@@ -30,3 +30,12 @@ export function avatarStyle(channelId: string): CSSProperties {
     backgroundPosition: 'center',
   };
 }
+
+// 채널 상단 배너 이미지 (magnific 생성, public/banners/cN.jpg)
+export function bannerStyle(channelId: string): CSSProperties {
+  return {
+    backgroundImage: `url("${import.meta.env.BASE_URL}banners/${channelId}.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+}

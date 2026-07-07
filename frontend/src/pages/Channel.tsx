@@ -5,7 +5,7 @@ import { getChannelById, getStreamsByChannel, getClipsByChannel } from '../servi
 import { useAppStore, formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { EmptyState } from '../components/states';
-import { thumbStyle, avatarStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle, bannerStyle } from '../lib/thumbs';
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -30,22 +30,19 @@ export default function Channel() {
 
   return (
     <>
-      <div className="ch-banner">
-        <div className="ch-profile">
-          <span className={`avatar ${channel.avatarTone}`} style={avatarStyle(channel.id)} />
-          <div className="meta">
-            <h1>{channel.displayName}{channel.isLive && <span className="badge-live" style={{ marginLeft: 10, verticalAlign: 'middle' }}><span className="dot" /> LIVE</span>}</h1>
-            <p>{channel.game} · 팔로워 {formatCount(channel.followers)}</p>
-          </div>
+      <div className="ch-banner" style={bannerStyle(channel.id)} />
+      <div className="ch-head">
+        <span className={`avatar ch-avatar ${channel.avatarTone}`} style={avatarStyle(channel.id)} />
+        <div className="ch-meta">
+          <h1>{channel.displayName}{channel.isLive && <span className="badge-live"><span className="dot" /> LIVE</span>}</h1>
+          <p>{channel.game} · 팔로워 {formatCount(channel.followers)}</p>
         </div>
-        <div className="ch-actions">
-          <button className={`btn-primary`} style={followed ? { background: 'var(--bc-700)' } : undefined} onClick={() => toggleFollow(channel.id)}>
-            {followed ? '팔로잉' : '+ 팔로우'}
-          </button>
-        </div>
+        <button className="btn-primary ch-follow" style={followed ? { background: 'var(--bc-700)' } : undefined} onClick={() => toggleFollow(channel.id)}>
+          {followed ? '팔로잉' : '+ 팔로우'}
+        </button>
       </div>
 
-      <p style={{ color: 'var(--text-sub)', fontSize: 14, margin: '0 2px 24px', maxWidth: 640 }}>{channel.bio}</p>
+      <p className="ch-bio">{channel.bio}</p>
 
       <div className="tabs">
         <button className={tab === 'live' ? 'active' : ''} onClick={() => setTab('live')}>방송 ({streams.length})</button>
