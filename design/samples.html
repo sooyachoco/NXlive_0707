@@ -1,0 +1,825 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NXlive — 디자인 샘플 5종 (A/B/C/N/D)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Anton&family=Chivo:wght@400;500;700;900&family=Rajdhani:wght@500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+/* NX Basic 표준 폰트 (Pretendard) — 샘플 N·D 용 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#050607;color:#e7e9ec;font-family:'Sora',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+:root{--tabh:56px}
+
+/* ---------- 상단 탭 바 (A/B/C 전환) ---------- */
+#tab-bar{position:fixed;top:0;left:0;right:0;height:var(--tabh);z-index:10000;
+  background:rgba(8,9,11,.86);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:6px;padding:0 20px}
+#tab-bar .brand{font-family:'Space Grotesk';font-weight:700;letter-spacing:-.02em;margin-right:16px;font-size:15px}
+#tab-bar .brand b{color:#c6f24e}
+#tab-bar button{padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;
+  color:#9aa0a8;transition:.18s;letter-spacing:.01em}
+#tab-bar button:hover{color:#fff}
+#tab-bar button.active{background:#fff;color:#0a0b0d}
+#tab-bar .hint{margin-left:auto;font-size:12px;color:#6b7178}
+
+.sample{display:none;padding-top:calc(var(--tabh) + 16px);min-height:100vh}
+.sample.on{display:block}
+.wrap{max-width:1440px;margin:0 auto;padding:0 32px}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* ============================================================
+   SAMPLE A — Bento 발견형 · 액센트 애시드 라임 #c6f24e
+   ============================================================ */
+#sa{background:radial-gradient(1200px 600px at 80% -10%,#12160c 0,#0b0d10 55%);
+  font-family:'Space Grotesk',sans-serif}
+#sa .a-top{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin:8px 0 22px}
+#sa .a-top h1{font-size:clamp(30px,4vw,52px);font-weight:700;letter-spacing:-.03em;line-height:.98}
+#sa .a-top h1 em{font-style:normal;color:#c6f24e}
+#sa .a-top p{color:#9aa0a8;font-size:15px;max-width:420px;line-height:1.5}
+#sa .a-live-pill{display:inline-flex;align-items:center;gap:7px;background:#c6f24e;color:#111;
+  font-family:'Barlow Condensed';font-weight:700;font-size:14px;letter-spacing:.06em;
+  padding:5px 12px;border-radius:6px;text-transform:uppercase}
+#sa .dot{width:8px;height:8px;border-radius:50%;background:#0f1a04;animation:pulseA 1.4s infinite}
+@keyframes pulseA{0%,100%{opacity:1}50%{opacity:.35}}
+
+#sa .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px}
+#sa .card{background:#101319;border:1px solid rgba(255,255,255,.07);border-radius:16px;
+  overflow:hidden;position:relative;transition:transform .2s,border-color .2s}
+#sa .card:hover{transform:translateY(-3px);border-color:rgba(198,242,78,.5)}
+#sa .feat{grid-column:span 2;grid-row:span 2}
+#sa .tall{grid-row:span 2}
+#sa .thumb{position:absolute;inset:0;background-size:cover;background-position:center}
+#sa .feat .thumb{background:linear-gradient(135deg,#1d2b0a,#0c1207)}
+#sa .thumb.g1{background:linear-gradient(140deg,#2a1c3f,#120b1e)}
+#sa .thumb.g2{background:linear-gradient(140deg,#0a2530,#07141a)}
+#sa .thumb.g3{background:linear-gradient(140deg,#301a12,#160b07)}
+#sa .thumb.g4{background:linear-gradient(140deg,#241a08,#141005)}
+#sa .card .ov{position:absolute;inset:0;padding:16px;display:flex;flex-direction:column;
+  justify-content:space-between;background:linear-gradient(180deg,rgba(5,6,7,.05),rgba(5,6,7,.82))}
+#sa .lvtag{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;
+  background:rgba(5,6,7,.7);border:1px solid rgba(198,242,78,.6);color:#c6f24e;
+  font-family:'Barlow Condensed';font-weight:700;font-size:12px;letter-spacing:.08em;
+  padding:3px 9px;border-radius:5px}
+#sa .card h3{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+#sa .feat h3{font-size:26px}
+#sa .meta{display:flex;align-items:center;gap:12px;margin-top:8px;color:#b8bec6;font-size:13px}
+#sa .meta .num{font-family:'Barlow Condensed';font-weight:700;color:#fff;font-size:16px;letter-spacing:.02em}
+#sa .chip{background:rgba(255,255,255,.08);color:#cfd4da;font-size:11px;padding:3px 8px;border-radius:999px}
+#sa .ico{width:15px;height:15px;stroke:#c6f24e;fill:none}
+#sa .catbar{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 40px}
+#sa .cat{border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 14px;
+  font-size:13px;color:#cfd4da;display:flex;align-items:center;gap:8px;transition:.18s}
+#sa .cat:hover{background:#c6f24e;color:#111;border-color:#c6f24e}
+#sa .cat b{font-family:'Barlow Condensed';font-size:14px;color:#c6f24e}
+#sa .cat:hover b{color:#111}
+
+/* ============================================================
+   SAMPLE B — 분할 매거진 · 액센트 코랄 #ff5a3c
+   ============================================================ */
+#sb{background:#0d0b0c;font-family:'Chivo',sans-serif}
+#sb .split{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:0;min-height:calc(100vh - var(--tabh))}
+#sb .stage{position:sticky;top:calc(var(--tabh) + 16px);align-self:start;
+  height:calc(100vh - var(--tabh) - 48px);padding:32px 40px}
+#sb .player{height:66%;border-radius:20px;background:
+  linear-gradient(200deg,#3a140c 0,#160806 70%);position:relative;overflow:hidden;
+  border:1px solid rgba(255,90,60,.25)}
+#sb .player .scan{position:absolute;inset:0;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 2px,transparent 2px 4px)}
+#sb .player .pl-ov{position:absolute;inset:0;padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+#sb .live{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  background:#ff5a3c;color:#160806;font-family:'Anton';font-size:15px;letter-spacing:.12em;
+  padding:5px 12px;border-radius:4px;text-transform:uppercase}
+#sb .live .dot{width:8px;height:8px;border-radius:50%;background:#160806;animation:pulseA 1.3s infinite}
+#sb .stage h1{font-family:'Anton';font-size:clamp(28px,3.4vw,46px);line-height:.94;
+  letter-spacing:.01em;margin-top:22px;text-transform:uppercase}
+#sb .stage h1 span{color:#ff5a3c}
+#sb .streamer{display:flex;align-items:center;gap:12px;margin-top:18px}
+#sb .av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#ff5a3c,#7a1f10);
+  border:2px solid #ff5a3c;flex:none}
+#sb .streamer b{font-weight:900;font-size:16px}
+#sb .streamer p{color:#a49b98;font-size:13px}
+#sb .stat3{display:flex;gap:26px;margin-top:22px}
+#sb .stat3 .s .n{font-family:'Anton';font-size:26px;color:#fff}
+#sb .stat3 .s .l{font-size:11px;color:#8f8785;letter-spacing:.1em;text-transform:uppercase}
+#sb .feed{border-left:1px solid rgba(255,255,255,.07);padding:28px 36px 60px}
+#sb .feed h2{font-family:'Anton';font-size:15px;letter-spacing:.18em;color:#8f8785;
+  text-transform:uppercase;margin-bottom:18px}
+#sb .story{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);transition:.18s}
+#sb .story:hover{transform:translateX(4px)}
+#sb .story .th{height:78px;border-radius:12px;background-size:cover}
+#sb .story .th.t1{background:linear-gradient(135deg,#2a1830,#120b17)}
+#sb .story .th.t2{background:linear-gradient(135deg,#102830,#08141a)}
+#sb .story .th.t3{background:linear-gradient(135deg,#302410,#1a1207)}
+#sb .story .th.t4{background:linear-gradient(135deg,#301015,#180a0c)}
+#sb .story .rank{font-family:'Anton';font-size:13px;color:#ff5a3c}
+#sb .story h3{font-size:15px;font-weight:700;margin:4px 0 6px;line-height:1.25}
+#sb .story .m{display:flex;gap:12px;color:#a49b98;font-size:12px;align-items:center}
+#sb .story .m .num{font-family:'Chivo';font-weight:900;color:#e7e9ec}
+#sb .ico{width:14px;height:14px;stroke:#ff5a3c;fill:none}
+
+/* ============================================================
+   SAMPLE C — 사이드바 + 대각 컬러블록 · 액센트 틸 #00e0c6 / 마젠타 #ff3d81
+   ============================================================ */
+#sc{background:#080b0e;font-family:'Sora',sans-serif;position:relative}
+#sc .layout{display:grid;grid-template-columns:76px 1fr;gap:0}
+#sc .rail{position:sticky;top:calc(var(--tabh) + 16px);align-self:start;
+  height:calc(100vh - var(--tabh) - 48px);background:#0c1116;border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 0;margin:0 0 0 4px}
+#sc .rail .rlogo{font-family:'Rajdhani';font-weight:700;color:#00e0c6;font-size:20px;margin-bottom:14px}
+#sc .rail .ri{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  color:#7c848c;transition:.18s;position:relative}
+#sc .rail .ri:hover,#sc .rail .ri.sel{background:rgba(0,224,198,.12);color:#00e0c6}
+#sc .rail .ri svg{width:22px;height:22px;stroke:currentColor;fill:none}
+#sc .content{padding:0 8px 60px 26px;position:relative}
+#sc .block{position:relative;border-radius:20px;overflow:hidden;padding:34px 36px;margin-bottom:22px;
+  background:linear-gradient(120deg,#0d2c2a,#0a1518)}
+#sc .block::after{content:"";position:absolute;top:0;right:0;width:44%;height:100%;
+  background:linear-gradient(120deg,transparent 0 40%,rgba(0,224,198,.10) 40%);
+  clip-path:polygon(28% 0,100% 0,100% 100%,0 100%)}
+#sc .block .z{position:relative;z-index:2}
+#sc .kicker{font-family:'Rajdhani';font-weight:700;letter-spacing:.22em;font-size:13px;
+  color:#00e0c6;text-transform:uppercase}
+#sc .block h1{font-family:'Rajdhani';font-weight:700;font-size:clamp(28px,3.6vw,48px);
+  line-height:1.02;margin:8px 0 12px;letter-spacing:.005em}
+#sc .block h1 em{font-style:normal;color:#ff3d81}
+#sc .block p{color:#9aa4ad;max-width:440px;font-size:14px;line-height:1.55}
+#sc .block .cta{display:inline-flex;align-items:center;gap:9px;margin-top:18px;
+  background:#00e0c6;color:#04211d;font-weight:700;font-size:14px;padding:11px 20px;border-radius:10px;transition:.18s}
+#sc .block .cta:hover{background:#ff3d81;color:#210410}
+#sc .sechead{display:flex;align-items:center;justify-content:space-between;margin:6px 4px 16px}
+#sc .sechead h2{font-family:'Rajdhani';font-weight:700;font-size:22px;letter-spacing:.02em}
+#sc .sechead a{color:#00e0c6;font-size:13px;font-weight:600}
+#sc .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+#sc .lc{background:#0d1319;border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;transition:.2s}
+#sc .lc:hover{border-color:rgba(0,224,198,.5);transform:translateY(-3px)}
+#sc .lc .th{height:132px;position:relative;background-size:cover}
+#sc .lc .th.c1{background:linear-gradient(135deg,#132c3a,#0a1620)}
+#sc .lc .th.c2{background:linear-gradient(135deg,#2c1330,#160a1a)}
+#sc .lc .th.c3{background:linear-gradient(135deg,#2c2413,#1a1408)}
+#sc .lc .th .lv{position:absolute;top:10px;left:10px;background:#ff3d81;color:#fff;
+  font-family:'Rajdhani';font-weight:700;font-size:11px;letter-spacing:.08em;padding:2px 8px;border-radius:5px}
+#sc .lc .th .vw{position:absolute;bottom:10px;right:10px;background:rgba(4,6,8,.78);
+  color:#e7e9ec;font-size:11px;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:5px}
+#sc .lc .b{padding:13px 14px}
+#sc .lc .b .gm{font-family:'Rajdhani';font-weight:700;font-size:12px;letter-spacing:.06em;color:#00e0c6;text-transform:uppercase}
+#sc .lc .b h3{font-size:14px;font-weight:600;margin:5px 0 8px;line-height:1.3}
+#sc .lc .b .who{display:flex;align-items:center;gap:8px;color:#9aa4ad;font-size:12px}
+#sc .lc .b .who .av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#00e0c6,#0a534a)}
+#sc .ico{width:14px;height:14px;stroke:#00e0c6;fill:none}
+
+footer.foot{border-top:1px solid rgba(255,255,255,.07);margin-top:40px;padding:22px 0;color:#6b7178;font-size:12px}
+
+/* ============================================================
+   SAMPLE X — ★확정안: D 기준 + C 사이드바 + 라이트모드
+   + 인기 스트리머 영역 + 오늘의 편성표
+   NX Basic 토큰(pc/bc) · Pretendard · type-default 스케일
+   ============================================================ */
+#sx{
+  --pc-100:#ecf1f9;--pc-400:#8fbfff;--pc-500:#6babff;--pc-600:#57a0ff;--pc-800:#0a74ff;--pc-900:#0056c7;
+  --bc-100:#e8ebf2;--bc-200:#d2d6e0;--bc-400:#b1b7c4;--bc-500:#a1a7b5;--bc-700:#747a86;--bc-800:#51555d;--bc-900:#3d4148;--bc-1000:#17191c;
+  --live:#e5484d;background:#f7f8fa;color:var(--bc-1000);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',system-ui,sans-serif;letter-spacing:-0.35px}
+#sx .gA{background:linear-gradient(135deg,#cfe0fb,#a9c8f5)}
+#sx .gB{background:linear-gradient(135deg,#dfe3ec,#c3cad9)}
+#sx .gC{background:linear-gradient(135deg,#d3e7f6,#b3d3ee)}
+#sx .gD{background:linear-gradient(135deg,#e0dcf0,#cabfe6)}
+#sx .xlayout{display:grid;grid-template-columns:210px 1fr;gap:22px}
+#sx .xrail{position:sticky;top:calc(var(--tabh) + 16px);align-self:start;height:calc(100vh - var(--tabh) - 48px);
+  padding:8px 14px 8px 2px;border-right:1px solid var(--bc-200);display:flex;flex-direction:column;gap:2px}
+#sx .xlogo{font-weight:700;font-size:22px;letter-spacing:-0.43px;padding:6px 10px 16px;color:var(--bc-1000)}
+#sx .xlogo b{color:var(--pc-800)}
+#sx .xi{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;color:var(--bc-700);font-size:14px;font-weight:500;transition:.15s}
+#sx .xi svg{width:20px;height:20px;stroke:currentColor;fill:none}
+#sx .xi:hover{background:var(--bc-100);color:var(--bc-900)}
+#sx .xi.sel{background:var(--pc-100);color:var(--pc-800);font-weight:700}
+#sx .xi .badge{margin-left:auto;background:var(--live);color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px}
+#sx .xmain{min-width:0}
+#sx .xtop{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+#sx .xsearch{flex:1;display:flex;align-items:center;gap:9px;background:var(--bc-100);border-radius:12px;padding:12px 14px;color:var(--bc-500);font-size:14px}
+#sx .xsearch svg{width:17px;height:17px;stroke:var(--bc-500);fill:none}
+#sx .xbtn{background:var(--pc-800);color:#fff;font-weight:700;font-size:14px;padding:12px 18px;border-radius:12px;white-space:nowrap;transition:.15s}
+#sx .xbtn:hover{background:var(--pc-900)}
+#sx .xhead{display:flex;align-items:baseline;justify-content:space-between;margin:6px 2px 14px}
+#sx .xhead h2{font-size:22px;font-weight:700;letter-spacing:-0.43px}
+#sx .xhead .sub{font-size:13px;font-weight:500;color:var(--bc-700);margin-left:8px}
+#sx .xhead a{color:var(--pc-800);font-size:14px;font-weight:700}
+/* feature: hero + ranking */
+#sx .xfeat{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-bottom:34px}
+#sx .xhero{border-radius:18px;overflow:hidden;position:relative;min-height:300px;border:1px solid var(--bc-200)}
+#sx .xhero .ov{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;justify-content:space-between;
+  background:linear-gradient(180deg,rgba(23,25,28,.05) 35%,rgba(23,25,28,.74))}
+#sx .badge-live{align-self:flex-start;display:inline-flex;gap:7px;align-items:center;background:var(--live);color:#fff;font-weight:700;font-size:13px;padding:4px 11px;border-radius:6px}
+#sx .badge-live .dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulseA 1.3s infinite}
+#sx .xhero h1{color:#fff;font-size:28px;font-weight:700;line-height:38px;letter-spacing:-0.45px;margin-bottom:10px}
+#sx .xhero .who{display:flex;align-items:center;gap:10px;color:#e8ebf2;font-size:14px}
+#sx .xhero .who .av{width:38px;height:38px;border-radius:50%;background:var(--pc-500);border:2px solid #fff}
+#sx .xhero .who .num{font-weight:700;color:#fff}
+#sx .xside{display:flex;flex-direction:column}
+#sx .xrow{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:10px 8px;border-radius:10px;transition:.15s;border-bottom:1px solid var(--bc-200)}
+#sx .xside .xrow:last-child{border-bottom:none}
+#sx .xrow:hover{background:var(--bc-100)}
+#sx .xrow .th{border-radius:9px;height:60px}
+#sx .xrow .gm{color:var(--pc-800);font-size:11px;font-weight:700}
+#sx .xrow h3{font-size:14px;font-weight:700;line-height:20px;margin:3px 0 5px;letter-spacing:-0.3px}
+#sx .xrow .m{color:var(--bc-700);font-size:12px;display:flex;gap:6px;align-items:center}
+#sx .xrow .m svg{width:13px;height:13px;stroke:var(--pc-800);fill:none}
+/* live grid */
+#sx .xgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px}
+#sx .xc{transition:.15s}
+#sx .xc:hover{transform:translateY(-3px)}
+#sx .xc:hover .th{box-shadow:0 10px 22px rgba(10,116,255,.16)}
+#sx .xc .th{height:158px;position:relative;border-radius:12px;overflow:hidden;transition:.15s}
+#sx .xc .lv{position:absolute;top:10px;left:10px;background:var(--live);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px}
+#sx .xc .vw{position:absolute;bottom:10px;right:10px;background:rgba(23,25,28,.82);color:#fff;font-size:11px;padding:3px 8px;border-radius:6px;display:flex;gap:5px;align-items:center}
+#sx .xc .vw svg{width:13px;height:13px;stroke:#fff;fill:none}
+#sx .xc .bd{padding:11px 2px 0}
+#sx .xc .gm{color:var(--pc-800);font-size:11px;font-weight:700}
+#sx .xc h3{font-size:15px;font-weight:700;line-height:22px;margin:4px 0 8px;letter-spacing:-0.3px}
+#sx .xc .who{display:flex;align-items:center;gap:8px;color:var(--bc-700);font-size:13px}
+#sx .xc .who .av{width:22px;height:22px;border-radius:50%;background:var(--pc-500)}
+/* 인기 스트리머 */
+#sx .xstreamers{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:36px}
+#sx .sc{padding:8px 6px;text-align:center;transition:.15s}
+#sx .sc .av{width:68px;height:68px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(135deg,var(--pc-500),var(--pc-900));position:relative;transition:.15s}
+#sx .sc:hover .av{transform:translateY(-3px)}
+#sx .sc .av.on{box-shadow:0 0 0 3px #fff,0 0 0 5px var(--live)}
+#sx .sc .av.on::after{content:"LIVE";position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);background:var(--live);color:#fff;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px}
+#sx .sc h4{font-size:14px;font-weight:700;letter-spacing:-0.3px}
+#sx .sc p{color:var(--bc-700);font-size:12px;margin:4px 0 12px}
+#sx .sc .follow{display:block;background:var(--pc-100);color:var(--pc-800);font-weight:700;font-size:12px;padding:8px 0;border-radius:8px;width:100%;transition:.15s}
+#sx .sc .follow:hover{background:var(--pc-800);color:#fff}
+/* 오늘의 편성표 (TV-guide) */
+#sx .sched{background:#fff;border:1px solid var(--bc-200);border-radius:16px;overflow:hidden;margin-bottom:34px}
+#sx .sched .stime{display:grid;grid-template-columns:132px repeat(6,1fr);background:var(--bc-100);border-bottom:1px solid var(--bc-200)}
+#sx .sched .stime span{padding:11px 12px;font-size:12px;font-weight:700;color:var(--bc-700);border-left:1px solid var(--bc-200)}
+#sx .sched .stime span:first-child{border-left:none;color:var(--bc-900)}
+#sx .sched .srow{display:grid;grid-template-columns:132px 1fr;border-bottom:1px solid var(--bc-200)}
+#sx .sched .srow:last-child{border-bottom:none}
+#sx .sched .sname{padding:12px;display:flex;align-items:center;gap:9px;font-size:13px;font-weight:700;color:var(--bc-1000)}
+#sx .sched .sname .av{width:28px;height:28px;border-radius:50%;background:var(--pc-500);flex:none}
+#sx .sched .sname .lv{width:7px;height:7px;border-radius:50%;background:var(--live);margin-left:auto;flex:none}
+#sx .sched .track{position:relative;height:60px;border-left:1px solid var(--bc-200);
+  background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(16.666% - 1px),var(--bc-100) calc(16.666% - 1px),var(--bc-100) 16.666%)}
+#sx .sched .prog{position:absolute;top:9px;bottom:9px;border-radius:8px;padding:0 12px;display:flex;flex-direction:column;justify-content:center;color:#fff;overflow:hidden}
+#sx .sched .prog b{font-weight:700;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-0.3px}
+#sx .sched .prog span{font-size:10px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sx .sched .p8{background:var(--pc-800)} #sx .sched .p6{background:var(--pc-600)}
+#sx .sched .p5{background:var(--pc-500)} #sx .sched .pg{background:var(--bc-700)}
+#sx footer.foot{color:var(--bc-700);border-top-color:var(--bc-200)}
+
+/* ============================================================
+   SAMPLE N — NX Basic 1.0v (라이트, 시스템 토큰 그대로)
+   pc(point/blue) + bc(base/gray) · type-default scale · Pretendard
+   ============================================================ */
+#sn{
+  --pc-100:#ecf1f9;--pc-500:#6babff;--pc-800:#0a74ff;--pc-900:#0056c7;
+  --bc-100:#e8ebf2;--bc-200:#d2d6e0;--bc-400:#b1b7c4;--bc-500:#a1a7b5;
+  --bc-700:#747a86;--bc-800:#51555d;--bc-900:#3d4148;--bc-1000:#17191c;
+  --live:#e5484d;
+  background:#f7f8fa;color:var(--bc-1000);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',system-ui,sans-serif;
+  letter-spacing:-0.35px}
+#sn .nbar{background:#fff;border:1px solid var(--bc-200);border-radius:14px;
+  display:flex;align-items:center;gap:8px;padding:12px 16px;margin:6px 0 20px}
+#sn .nbar .lg{font-weight:700;font-size:20px;color:var(--bc-1000);letter-spacing:-0.43px;margin-right:6px}
+#sn .nbar .lg b{color:var(--pc-800)}
+#sn .ntab{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--bc-700)}
+#sn .ntab.sel{background:var(--pc-100);color:var(--pc-800);font-weight:700}
+#sn .nsearch{margin-left:auto;display:flex;align-items:center;gap:8px;background:#fff;
+  border:1px solid var(--bc-200);border-radius:10px;padding:8px 12px;min-width:220px;color:var(--bc-500);font-size:14px}
+#sn .nsearch svg{width:16px;height:16px;stroke:var(--bc-500);fill:none}
+#sn .nbtn{background:var(--pc-800);color:#fff;font-weight:700;font-size:14px;padding:9px 16px;
+  border-radius:8px;transition:.15s}
+#sn .nbtn:hover{background:var(--pc-900)}
+#sn .nhead{display:flex;align-items:baseline;justify-content:space-between;margin:4px 2px 14px}
+#sn .nhead h2{font-size:24px;font-weight:700;letter-spacing:-0.43px}
+#sn .nhead a{color:var(--pc-800);font-size:14px;font-weight:700}
+#sn .ngrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+#sn .ncard{background:#fff;border:1px solid var(--bc-200);border-radius:14px;overflow:hidden;transition:.18s}
+#sn .ncard:hover{border-color:var(--pc-500);box-shadow:0 6px 20px rgba(10,116,255,.10);transform:translateY(-2px)}
+#sn .ncard .th{height:130px;position:relative;background:linear-gradient(135deg,#dbe6fb,#c3d6f5)}
+#sn .ncard .th.n2{background:linear-gradient(135deg,#e3e7ef,#cfd5e2)}
+#sn .ncard .th.n3{background:linear-gradient(135deg,#d7e9f7,#bcd7ee)}
+#sn .ncard .th.n4{background:linear-gradient(135deg,#e6e2f2,#d2cbe8)}
+#sn .badge-live{position:absolute;top:10px;left:10px;background:var(--live);color:#fff;
+  font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:0}
+#sn .vwct{position:absolute;bottom:10px;right:10px;background:rgba(23,25,28,.82);color:#fff;
+  font-size:11px;padding:3px 8px;border-radius:6px;display:flex;gap:5px;align-items:center}
+#sn .vwct svg{width:13px;height:13px;stroke:#fff;fill:none}
+#sn .ncard .bd{padding:13px 14px}
+#sn .tag{display:inline-block;background:var(--pc-100);color:var(--pc-800);font-size:11px;
+  font-weight:700;padding:3px 9px;border-radius:999px;margin-bottom:8px}
+#sn .ncard h3{font-size:15px;font-weight:700;line-height:22px;letter-spacing:-0.3px;color:var(--bc-1000)}
+#sn .ncard .who{display:flex;align-items:center;gap:8px;margin-top:9px;color:var(--bc-700);font-size:13px}
+#sn .ncard .who .av{width:22px;height:22px;border-radius:50%;background:var(--pc-500)}
+#sn .catrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+#sn .catrow .c{background:#fff;border:1px solid var(--bc-200);border-radius:999px;padding:8px 14px;
+  font-size:13px;font-weight:500;color:var(--bc-800)}
+#sn .catrow .c.sel{background:var(--bc-1000);color:#fff;border-color:var(--bc-1000)}
+#sn footer.foot{color:var(--bc-700);border-top-color:var(--bc-200)}
+
+/* ============================================================
+   SAMPLE D — NX Basic 다크 확장 (직접 지정)
+   시스템 pc/bc 토큰 유지 + 다크 서피스로 변주 · type scale 보존
+   ============================================================ */
+#sd{
+  --pc-500:#6babff;--pc-400:#8fbfff;--pc-800:#0a74ff;
+  --s-0:#17191c;--s-1:#1f2226;--s-2:#272b30;--brd:#31353b;
+  --tx:#f4f6f9;--tx-sub:#c6ccd7;--tx-dim:#8f96a3;--live:#ff5f6d;
+  background:var(--s-0);color:var(--tx);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;letter-spacing:-0.35px}
+#sd .dbar{display:flex;align-items:center;gap:10px;padding:12px 2px;margin-bottom:20px;border-bottom:1px solid var(--brd)}
+#sd .dbar .lg{font-weight:700;font-size:20px;letter-spacing:-0.43px;margin-right:8px}
+#sd .dbar .lg b{color:var(--pc-500)}
+#sd .dbar .dt{padding:8px 14px;border-radius:8px;font-size:14px;font-weight:500;color:var(--tx-dim)}
+#sd .dbar .dt.sel{background:rgba(107,171,255,.14);color:var(--pc-400);font-weight:700}
+#sd .dbar .ds{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--s-1);
+  border:1px solid var(--brd);border-radius:10px;padding:8px 12px;min-width:200px;color:var(--tx-dim);font-size:14px}
+#sd .dbar .ds svg{width:16px;height:16px;stroke:var(--tx-dim);fill:none}
+#sd .feature{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:30px}
+#sd .hero{border-radius:18px;overflow:hidden;position:relative;min-height:320px;
+  background:linear-gradient(150deg,#123056,#0c1a2e 70%);border:1px solid var(--brd)}
+#sd .hero .ov{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;
+  background:linear-gradient(180deg,rgba(23,25,28,0),rgba(23,25,28,.7))}
+#sd .badge-live{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;background:var(--live);
+  color:#180708;font-weight:700;font-size:13px;padding:4px 11px;border-radius:6px;margin-bottom:auto}
+#sd .badge-live .dot{width:7px;height:7px;border-radius:50%;background:#180708;animation:pulseA 1.3s infinite}
+#sd .hero h1{font-size:32px;font-weight:700;line-height:44px;letter-spacing:-0.45px;margin-bottom:10px}
+#sd .hero .who{display:flex;align-items:center;gap:10px;color:var(--tx-sub);font-size:14px}
+#sd .hero .who .av{width:36px;height:36px;border-radius:50%;background:var(--pc-500)}
+#sd .hero .who .num{font-weight:700;color:#fff}
+#sd .side{display:flex;flex-direction:column;gap:12px}
+#sd .srow{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--s-1);border:1px solid var(--brd);
+  border-radius:14px;padding:10px;transition:.16s}
+#sd .srow:hover{border-color:var(--pc-500)}
+#sd .srow .th{border-radius:9px;background:linear-gradient(135deg,#241a30,#141018)}
+#sd .srow .th.d2{background:linear-gradient(135deg,#10262e,#0a1518)}
+#sd .srow .th.d3{background:linear-gradient(135deg,#2a2213,#171208)}
+#sd .srow .gm{color:var(--pc-400);font-size:11px;font-weight:700;letter-spacing:0}
+#sd .srow h3{font-size:14px;font-weight:700;line-height:20px;margin:3px 0 6px;letter-spacing:-0.3px}
+#sd .srow .m{color:var(--tx-dim);font-size:12px;display:flex;gap:6px;align-items:center}
+#sd .srow .m svg{width:13px;height:13px;stroke:var(--pc-500);fill:none}
+#sd .dhead{display:flex;align-items:baseline;justify-content:space-between;margin:2px 2px 14px}
+#sd .dhead h2{font-size:24px;font-weight:700;letter-spacing:-0.43px}
+#sd .dhead a{color:var(--pc-400);font-size:14px;font-weight:700}
+#sd .dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px}
+#sd .dc{background:var(--s-1);border:1px solid var(--brd);border-radius:14px;overflow:hidden;transition:.18s}
+#sd .dc:hover{border-color:var(--pc-500);transform:translateY(-2px)}
+#sd .dc .th{height:120px;position:relative;background:linear-gradient(135deg,#1a2740,#111a2b)}
+#sd .dc .th.x2{background:linear-gradient(135deg,#2a1830,#160b1a)}
+#sd .dc .th.x3{background:linear-gradient(135deg,#10262a,#0a1517)}
+#sd .dc .th.x4{background:linear-gradient(135deg,#2a2213,#161107)}
+#sd .dc .lv{position:absolute;top:9px;left:9px;background:var(--live);color:#180708;font-size:11px;
+  font-weight:700;padding:2px 8px;border-radius:5px}
+#sd .dc .vw{position:absolute;bottom:9px;right:9px;background:rgba(10,12,14,.8);font-size:11px;
+  padding:3px 8px;border-radius:6px;display:flex;gap:5px;align-items:center}
+#sd .dc .vw svg{width:13px;height:13px;stroke:var(--pc-500);fill:none}
+#sd .dc .bd{padding:12px 13px}
+#sd .dc .gm{color:var(--pc-400);font-size:11px;font-weight:700}
+#sd .dc h3{font-size:14px;font-weight:700;line-height:20px;margin:4px 0 8px;letter-spacing:-0.3px}
+#sd .dc .who{display:flex;align-items:center;gap:7px;color:var(--tx-sub);font-size:12px}
+#sd .dc .who .av{width:20px;height:20px;border-radius:50%;background:var(--pc-500)}
+#sd footer.foot{color:var(--tx-dim);border-top-color:var(--brd)}
+
+@media(max-width:960px){
+  #sn .ngrid,#sd .dgrid{grid-template-columns:1fr 1fr}
+  #sd .feature{grid-template-columns:1fr}
+  #sx .xlayout{grid-template-columns:1fr}
+  #sx .xrail{position:static;height:auto;flex-direction:row;flex-wrap:wrap;gap:6px}
+  #sx .xrail .xlogo{width:100%}
+  #sx .xi .badge{margin-left:6px}
+  #sx .xfeat{grid-template-columns:1fr}
+  #sx .xgrid{grid-template-columns:1fr 1fr}
+  #sx .xstreamers{grid-template-columns:repeat(2,1fr)}
+  #sx .sched{overflow-x:auto}
+  #sx .sched .stime,#sx .sched .srow{min-width:660px}
+  #sa .bento{grid-template-columns:repeat(2,1fr)}
+  #sa .feat{grid-column:span 2}
+  #sb .split{grid-template-columns:1fr}
+  #sb .stage{position:static;height:auto}
+  #sb .feed{border-left:none;border-top:1px solid rgba(255,255,255,.07)}
+  #sc .grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- 재사용 SVG 아이콘 심볼 (도메인 아이콘 6종) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke-width="1.8"/></symbol>
+  <symbol id="i-pad" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="5" stroke-width="1.8"/><path d="M7 12h3M8.5 10.5v3M15 11h.01M17.5 13h.01" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" stroke-width="1.8"/><path d="M10 9l5 3-5 3V9z" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 20l1-4.5A8 8 0 1 1 21 12z" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-broadcast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5" stroke-width="1.8"/><path d="M6.5 6.5a8 8 0 0 0 0 11M17.5 6.5a8 8 0 0 1 0 11M4 4a12 12 0 0 0 0 16M20 4a12 12 0 0 1 0 16" stroke-width="1.6"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 4h12v3a6 6 0 0 1-12 0V4zM6 6H3v1a4 4 0 0 0 3 3.8M18 6h3v1a4 4 0 0 1-3 3.8M9 20h6M12 15v5" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="1.8"/><path d="M20 20l-3.5-3.5" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</svg>
+
+<nav id="tab-bar">
+  <span class="brand">NX<b>live</b></span>
+  <button class="tab active" data-t="x">★ 확정안 (D+C·라이트)</button>
+  <button class="tab" data-t="a">A · Bento 발견형</button>
+  <button class="tab" data-t="b">B · 분할 매거진</button>
+  <button class="tab" data-t="c">C · 사이드바+대각</button>
+  <button class="tab" data-t="n">N · NX Basic</button>
+  <button class="tab" data-t="d">D · NX Basic 다크</button>
+  <span class="hint">★ 확정안 기준 · 원본 A~D도 비교 가능</span>
+</nav>
+
+<!-- ===================== ★ 확정안 (SAMPLE X) ===================== -->
+<section class="sample on" id="sx">
+  <div class="wrap">
+    <div class="xlayout">
+      <aside class="xrail">
+        <div class="xlogo">NX<b>live</b></div>
+        <a class="xi sel"><svg><use href="#i-broadcast"/></svg> 홈</a>
+        <a class="xi"><svg><use href="#i-pad"/></svg> 게임</a>
+        <a class="xi"><svg><use href="#i-clip"/></svg> 클립</a>
+        <a class="xi"><svg><use href="#i-chat"/></svg> 채널 <span class="badge">12</span></a>
+        <a class="xi"><svg><use href="#i-trophy"/></svg> e스포츠</a>
+        <a class="xi"><svg><use href="#i-search"/></svg> 검색</a>
+      </aside>
+
+      <div class="xmain">
+        <div class="xtop">
+          <span class="xsearch"><svg><use href="#i-search"/></svg> 게임·스트리머·클립 검색</span>
+          <button class="xbtn">라이브 둘러보기</button>
+        </div>
+
+        <!-- 피처: 대표 라이브 + 실시간 랭킹 -->
+        <div class="xfeat">
+          <div class="xhero gA"><div class="ov">
+            <span class="badge-live"><span class="dot"></span> LIVE · 24,713</span>
+            <div>
+              <h1>검은마법사 하드<br>첫 트라이 생방송</h1>
+              <div class="who"><span class="av"></span>
+                <div><b>단풍국_지존</b> · 메이플스토리</div>
+                <span class="num" style="margin-left:6px">24,713명 시청 중</span></div>
+            </div>
+          </div></div>
+          <div class="xside">
+            <a class="xrow"><div class="th gB"></div><div>
+              <div class="gm">FC 온라인</div><h3>감독전 e스포츠 8강 생중계</h3>
+              <div class="m"><svg><use href="#i-eye"/></svg> 15,320</div></div></a>
+            <a class="xrow"><div class="th gC"></div><div>
+              <div class="gm">던전앤파이터</div><h3>레이드 최속 트라이</h3>
+              <div class="m"><svg><use href="#i-eye"/></svg> 18,200</div></div></a>
+            <a class="xrow"><div class="th gD"></div><div>
+              <div class="gm">서든어택</div><h3>클랜전 결승 · 풀옵 대결</h3>
+              <div class="m"><svg><use href="#i-eye"/></svg> 6,540</div></div></a>
+          </div>
+        </div>
+
+        <!-- 실시간 라이브 -->
+        <div class="xhead"><h2>실시간 라이브</h2><a>전체 보기</a></div>
+        <div class="xgrid">
+          <article class="xc"><div class="th gA"><span class="lv">LIVE</span>
+            <span class="vw"><svg><use href="#i-eye"/></svg> 9,120</span></div>
+            <div class="bd"><div class="gm">던전앤파이터</div><h3>100제 최속 클리어 도전</h3>
+              <div class="who"><span class="av"></span> 강림_dnf</div></div></article>
+          <article class="xc"><div class="th gC"><span class="lv">LIVE</span>
+            <span class="vw"><svg><use href="#i-eye"/></svg> 5,880</span></div>
+            <div class="bd"><div class="gm">카트라이더</div><h3>드리프트 스피드전 랭커 매치</h3>
+              <div class="who"><span class="av"></span> 부스터_한</div></div></article>
+          <article class="xc"><div class="th gD"><span class="lv">LIVE</span>
+            <span class="vw"><svg><use href="#i-eye"/></svg> 4,210</span></div>
+            <div class="bd"><div class="gm">마비노기</div><h3>모바일 신규 던전 공략</h3>
+              <div class="who"><span class="av"></span> 음유시인_라라</div></div></article>
+        </div>
+
+        <!-- ★ NEW: 인기 스트리머 -->
+        <div class="xhead"><h2>인기 스트리머 <span class="sub">지금 방송 중 · 팔로워 순</span></h2><a>전체 보기</a></div>
+        <div class="xstreamers">
+          <div class="sc"><div class="av on"></div><h4>단풍국_지존</h4><p>메이플스토리 · 128K</p><a class="follow">+ 팔로우</a></div>
+          <div class="sc"><div class="av on"></div><h4>강림_dnf</h4><p>던전앤파이터 · 96K</p><a class="follow">+ 팔로우</a></div>
+          <div class="sc"><div class="av"></div><h4>감독_노현</h4><p>FC 온라인 · 74K</p><a class="follow">+ 팔로우</a></div>
+          <div class="sc"><div class="av on"></div><h4>부스터_한</h4><p>카트라이더 · 61K</p><a class="follow">+ 팔로우</a></div>
+          <div class="sc"><div class="av"></div><h4>헤드샷_킴</h4><p>서든어택 · 43K</p><a class="follow">+ 팔로우</a></div>
+        </div>
+
+        <!-- ★ NEW: 오늘의 편성표 -->
+        <div class="xhead"><h2>오늘의 편성표 <span class="sub">7월 6일 (일)</span></h2><a>주간 편성표</a></div>
+        <div class="sched">
+          <div class="stime"><span>스트리머</span><span>18:00</span><span>19:00</span><span>20:00</span><span>21:00</span><span>22:00</span><span>23:00</span></div>
+          <div class="srow">
+            <div class="sname"><span class="av"></span> 단풍국_지존 <span class="lv"></span></div>
+            <div class="track">
+              <div class="prog p8" style="left:0%;width:50%"><b>검은마법사 하드 트라이</b><span>메이플스토리 · 지금 방송 중</span></div>
+              <div class="prog p5" style="left:50%;width:33.3%"><b>보스 러시 시청자 참여</b><span>메이플스토리</span></div>
+            </div>
+          </div>
+          <div class="srow">
+            <div class="sname"><span class="av"></span> 감독_노현 <span class="lv"></span></div>
+            <div class="track">
+              <div class="prog p6" style="left:16.6%;width:33.3%"><b>감독전 8강 생중계</b><span>FC 온라인 · e스포츠</span></div>
+              <div class="prog pg" style="left:66.6%;width:33.3%"><b>랭커 감독전 복기</b><span>FC 온라인</span></div>
+            </div>
+          </div>
+          <div class="srow">
+            <div class="sname"><span class="av"></span> 부스터_한 <span class="lv"></span></div>
+            <div class="track">
+              <div class="prog p5" style="left:0%;width:33.3%"><b>스피드전 랭커 매치</b><span>카트라이더</span></div>
+              <div class="prog p8" style="left:50%;width:50%"><b>드리프트 정규 리그</b><span>카트라이더 · 저녁 정규</span></div>
+            </div>
+          </div>
+          <div class="srow">
+            <div class="sname"><span class="av"></span> 강림_dnf <span class="lv"></span></div>
+            <div class="track">
+              <div class="prog p6" style="left:33.3%;width:50%"><b>100제 최속 클리어 도전</b><span>던전앤파이터 · 지금 방송 중</span></div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="foot">★ 확정안 — D(NX Basic 다크) 기준 + C 사이드바 + <b>라이트모드</b> · 인기 스트리머 + 오늘의 편성표 추가 · 포인트 블루 #0a74ff · Pretendard · type-default 스케일</footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE A ===================== -->
+<section class="sample" id="sa">
+  <div class="wrap">
+    <div class="a-top">
+      <div>
+        <span class="a-live-pill"><span class="dot"></span> 지금 라이브 1,284</span>
+        <h1 style="margin-top:14px">지금 뜨는 <em>넥슨 라이브</em>를<br>한눈에 발견하세요</h1>
+      </div>
+      <p>메이플부터 FC 온라인까지 — 게임별 실시간 방송을 벤토 그리드로 모아 봅니다. 로그인 없이 바로 시청.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card feat"><div class="thumb"></div><div class="ov">
+        <span class="lvtag"><svg class="ico"><use href="#i-broadcast"/></svg> LIVE</span>
+        <div>
+          <h3>[메이플] 챌린저스 월드 랭킹 1위 도전 24시간</h3>
+          <div class="meta"><span class="num">24.7K</span><span>시청</span>
+            <span class="chip">메이플스토리</span><span class="chip">보스레이드</span></div>
+        </div>
+      </div></article>
+
+      <article class="card"><div class="thumb g1"></div><div class="ov">
+        <span class="lvtag"><svg class="ico"><use href="#i-broadcast"/></svg> LIVE</span>
+        <div><h3>던파 100제 최속 클리어</h3>
+          <div class="meta"><svg class="ico"><use href="#i-eye"/></svg><span class="num">9,120</span></div></div>
+      </div></article>
+
+      <article class="card tall"><div class="thumb g2"></div><div class="ov">
+        <span class="lvtag"><svg class="ico"><use href="#i-broadcast"/></svg> LIVE</span>
+        <div><h3>FC 온라인 랭커 매치<br>실시간 감독전</h3>
+          <div class="meta"><svg class="ico"><use href="#i-eye"/></svg><span class="num">15.3K</span>
+            <span class="chip">FC 온라인</span></div></div>
+      </div></article>
+
+      <article class="card"><div class="thumb g3"></div><div class="ov">
+        <span class="lvtag"><svg class="ico"><use href="#i-broadcast"/></svg> LIVE</span>
+        <div><h3>서든어택 클랜전 결승</h3>
+          <div class="meta"><svg class="ico"><use href="#i-eye"/></svg><span class="num">6,540</span></div></div>
+      </div></article>
+
+      <article class="card"><div class="thumb g4"></div><div class="ov">
+        <span class="lvtag" style="border-color:rgba(255,255,255,.3);color:#cfd4da"><svg class="ico" style="stroke:#cfd4da"><use href="#i-clip"/></svg> 인기 클립</span>
+        <div><h3>카트라이더 역전 드리프트.gif</h3>
+          <div class="meta"><svg class="ico"><use href="#i-eye"/></svg><span class="num">88K</span><span>조회</span></div></div>
+      </div></article>
+
+      <article class="card"><div class="thumb g1"></div><div class="ov">
+        <span class="lvtag"><svg class="ico"><use href="#i-broadcast"/></svg> LIVE</span>
+        <div><h3>마비노기 모바일 신규 던전</h3>
+          <div class="meta"><svg class="ico"><use href="#i-eye"/></svg><span class="num">4,210</span></div></div>
+      </div></article>
+    </div>
+
+    <div class="catbar">
+      <a class="cat"><svg class="ico"><use href="#i-pad"/></svg> 메이플스토리 <b>312</b></a>
+      <a class="cat"><svg class="ico"><use href="#i-pad"/></svg> FC 온라인 <b>208</b></a>
+      <a class="cat"><svg class="ico"><use href="#i-pad"/></svg> 던전앤파이터 <b>174</b></a>
+      <a class="cat"><svg class="ico"><use href="#i-pad"/></svg> 서든어택 <b>96</b></a>
+      <a class="cat"><svg class="ico"><use href="#i-trophy"/></svg> e스포츠 <b>41</b></a>
+    </div>
+    <footer class="foot">샘플 A — 비대칭 벤토 그리드로 "발견"을 강조 · 액센트 애시드 라임 · Space Grotesk / Barlow Condensed</footer>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE B ===================== -->
+<section class="sample" id="sb">
+  <div class="wrap" style="max-width:1440px;padding:0">
+    <div class="split">
+      <div class="stage">
+        <div class="player">
+          <div class="scan"></div>
+          <div class="pl-ov">
+            <span class="live"><span class="dot"></span> ON AIR</span>
+            <div>
+              <h1>던전앤파이터<br><span>레이드 최속</span> 트라이</h1>
+              <div class="streamer"><div class="av"></div>
+                <div><b>강림_dnf</b><p>던전앤파이터 · 팔로워 128K</p></div></div>
+              <div class="stat3">
+                <div class="s"><div class="n">18.2K</div><div class="l">지금 시청</div></div>
+                <div class="s"><div class="n">03:41</div><div class="l">방송 시간</div></div>
+                <div class="s"><div class="n">2.6K</div><div class="l">채팅/분</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feed">
+        <h2>실시간 인기 방송</h2>
+        <a class="story"><div class="th t1"></div><div>
+          <div class="rank">01</div><h3>[메이플] 하드 검은마법사 첫 트라이 생방송</h3>
+          <div class="m"><svg class="ico"><use href="#i-eye"/></svg><span class="num">24.7K</span><span>· 메이플스토리</span></div></div></a>
+        <a class="story"><div class="th t2"></div><div>
+          <div class="rank">02</div><h3>FC 온라인 감독전 e스포츠 8강</h3>
+          <div class="m"><svg class="ico"><use href="#i-eye"/></svg><span class="num">15.3K</span><span>· FC 온라인</span></div></div></a>
+        <a class="story"><div class="th t3"></div><div>
+          <div class="rank">03</div><h3>서든어택 클랜 결승 — 풀옵 대결</h3>
+          <div class="m"><svg class="ico"><use href="#i-eye"/></svg><span class="num">6,540</span><span>· 서든어택</span></div></div></a>
+        <a class="story"><div class="th t4"></div><div>
+          <div class="rank">04</div><h3>카트라이더 드리프트 스피드전 랭커</h3>
+          <div class="m"><svg class="ico"><use href="#i-eye"/></svg><span class="num">5,880</span><span>· 카트라이더</span></div></div></a>
+        <a class="story"><div class="th t1"></div><div>
+          <div class="rank">05</div><h3>마비노기 모바일 신규 지역 탐험</h3>
+          <div class="m"><svg class="ico"><use href="#i-eye"/></svg><span class="num">4,210</span><span>· 마비노기</span></div></div></a>
+        <footer class="foot" style="margin-top:26px">샘플 B — 좌측 고정 플레이어 + 우측 에디토리얼 랭킹 피드 · 액센트 코랄 · Anton / Chivo</footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE C ===================== -->
+<section class="sample" id="sc">
+  <div class="wrap">
+    <div class="layout">
+      <aside class="rail">
+        <div class="rlogo">NX</div>
+        <a class="ri sel" title="홈"><svg><use href="#i-broadcast"/></svg></a>
+        <a class="ri" title="게임"><svg><use href="#i-pad"/></svg></a>
+        <a class="ri" title="클립"><svg><use href="#i-clip"/></svg></a>
+        <a class="ri" title="채팅"><svg><use href="#i-chat"/></svg></a>
+        <a class="ri" title="e스포츠"><svg><use href="#i-trophy"/></svg></a>
+        <a class="ri" title="검색"><svg><use href="#i-search"/></svg></a>
+      </aside>
+
+      <div class="content">
+        <div class="block">
+          <div class="z">
+            <div class="kicker">Featured · 지금 가장 뜨거운</div>
+            <h1>넥슨 게임 라이브,<br><em>발견하고 바로 시청</em></h1>
+            <p>게임별 실시간 방송 · 하이라이트 클립 · 스트리머 채널을 하나의 화면에서. 인증 없이 익명으로 즐기세요.</p>
+            <a class="cta"><svg class="ico" style="stroke:#04211d"><use href="#i-broadcast"/></svg> 라이브 둘러보기</a>
+          </div>
+        </div>
+
+        <div class="sechead"><h2>실시간 라이브</h2><a>전체 보기 →</a></div>
+        <div class="grid">
+          <article class="lc"><div class="th c1"><span class="lv">LIVE</span>
+            <span class="vw"><svg class="ico"><use href="#i-eye"/></svg> 24.7K</span></div>
+            <div class="b"><div class="gm">메이플스토리</div><h3>검은마법사 하드 첫 트라이</h3>
+              <div class="who"><span class="av"></span> 단풍국_지존</div></div></article>
+          <article class="lc"><div class="th c2"><span class="lv">LIVE</span>
+            <span class="vw"><svg class="ico"><use href="#i-eye"/></svg> 15.3K</span></div>
+            <div class="b"><div class="gm">FC 온라인</div><h3>감독전 e스포츠 8강 생중계</h3>
+              <div class="who"><span class="av"></span> 감독_노현</div></div></article>
+          <article class="lc"><div class="th c3"><span class="lv">LIVE</span>
+            <span class="vw"><svg class="ico"><use href="#i-eye"/></svg> 6,540</span></div>
+            <div class="b"><div class="gm">서든어택</div><h3>클랜전 결승 풀옵 대결</h3>
+              <div class="who"><span class="av"></span> 헤드샷_킴</div></div></article>
+        </div>
+        <footer class="foot">샘플 C — 좌측 아이콘 내비 + 대각 클리핑 컬러블록 · 액센트 틸/마젠타 · Rajdhani / Sora</footer>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE N (NX Basic 1.0v · 라이트) ===================== -->
+<section class="sample" id="sn">
+  <div class="wrap">
+    <div class="nbar">
+      <span class="lg">NX<b>live</b></span>
+      <a class="ntab sel">홈</a><a class="ntab">게임</a><a class="ntab">클립</a><a class="ntab">채널</a>
+      <span class="nsearch"><svg><use href="#i-search"/></svg> 게임·스트리머 검색</span>
+      <button class="nbtn">둘러보기</button>
+    </div>
+
+    <div class="catrow">
+      <span class="c sel">전체</span><span class="c">메이플스토리</span><span class="c">FC 온라인</span>
+      <span class="c">던전앤파이터</span><span class="c">서든어택</span><span class="c">카트라이더</span><span class="c">e스포츠</span>
+    </div>
+
+    <div class="nhead"><h2>실시간 인기 라이브</h2><a>전체 보기</a></div>
+    <div class="ngrid">
+      <article class="ncard"><div class="th"><span class="badge-live">LIVE</span>
+        <span class="vwct"><svg><use href="#i-eye"/></svg> 24,713</span></div>
+        <div class="bd"><span class="tag">메이플스토리</span><h3>검은마법사 하드 첫 트라이</h3>
+          <div class="who"><span class="av"></span> 단풍국_지존</div></div></article>
+      <article class="ncard"><div class="th n2"><span class="badge-live">LIVE</span>
+        <span class="vwct"><svg><use href="#i-eye"/></svg> 15,320</span></div>
+        <div class="bd"><span class="tag">FC 온라인</span><h3>감독전 e스포츠 8강 생중계</h3>
+          <div class="who"><span class="av"></span> 감독_노현</div></div></article>
+      <article class="ncard"><div class="th n3"><span class="badge-live">LIVE</span>
+        <span class="vwct"><svg><use href="#i-eye"/></svg> 6,540</span></div>
+        <div class="bd"><span class="tag">서든어택</span><h3>클랜전 결승 · 풀옵 대결</h3>
+          <div class="who"><span class="av"></span> 헤드샷_킴</div></div></article>
+      <article class="ncard"><div class="th n4"><span class="badge-live">LIVE</span>
+        <span class="vwct"><svg><use href="#i-eye"/></svg> 5,880</span></div>
+        <div class="bd"><span class="tag">카트라이더</span><h3>드리프트 스피드전 랭커 매치</h3>
+          <div class="who"><span class="av"></span> 부스터_한</div></div></article>
+    </div>
+
+    <div class="nhead"><h2>많이 본 클립</h2><a>전체 보기</a></div>
+    <div class="ngrid">
+      <article class="ncard"><div class="th n3"><span class="vwct"><svg><use href="#i-clip"/></svg> 88K 조회</span></div>
+        <div class="bd"><span class="tag">카트라이더</span><h3>역전 드리프트 결승선 0.1초</h3>
+          <div class="who"><span class="av"></span> 부스터_한</div></div></article>
+      <article class="ncard"><div class="th"><span class="vwct"><svg><use href="#i-clip"/></svg> 61K 조회</span></div>
+        <div class="bd"><span class="tag">메이플스토리</span><h3>솔로 검마 클리어 순간</h3>
+          <div class="who"><span class="av"></span> 단풍국_지존</div></div></article>
+      <article class="ncard"><div class="th n2"><span class="vwct"><svg><use href="#i-clip"/></svg> 47K 조회</span></div>
+        <div class="bd"><span class="tag">FC 온라인</span><h3>인저리타임 극장골</h3>
+          <div class="who"><span class="av"></span> 감독_노현</div></div></article>
+      <article class="ncard"><div class="th n4"><span class="vwct"><svg><use href="#i-clip"/></svg> 33K 조회</span></div>
+        <div class="bd"><span class="tag">던전앤파이터</span><h3>레이드 페이즈 원킬</h3>
+          <div class="who"><span class="av"></span> 강림_dnf</div></div></article>
+    </div>
+    <footer class="foot">샘플 N — NX Basic 1.0v 시스템 토큰 그대로(라이트) · 포인트 블루 #0a74ff · Pretendard · type-default 스케일. 정돈·신뢰 중심. (LIVE 배지는 관용적 레드 #e5484d — 시스템 상태색 확장 시 교체)</footer>
+  </div>
+</section>
+
+<!-- ===================== SAMPLE D (NX Basic 다크 확장 · 직접 지정) ===================== -->
+<section class="sample" id="sd">
+  <div class="wrap">
+    <div class="dbar">
+      <span class="lg">NX<b>live</b></span>
+      <a class="dt sel">홈</a><a class="dt">게임</a><a class="dt">클립</a><a class="dt">채널</a>
+      <span class="ds"><svg><use href="#i-search"/></svg> 게임·스트리머 검색</span>
+    </div>
+
+    <div class="feature">
+      <div class="hero"><div class="ov">
+        <span class="badge-live"><span class="dot"></span> LIVE</span>
+        <h1>검은마법사 하드<br>첫 트라이 생방송</h1>
+        <div class="who"><span class="av"></span>
+          <div>단풍국_지존 · 메이플스토리</div>
+          <span class="num" style="margin-left:6px">24,713명 시청</span></div>
+      </div></div>
+      <div class="side">
+        <a class="srow"><div class="th"></div><div>
+          <div class="gm">FC 온라인</div><h3>감독전 e스포츠 8강 생중계</h3>
+          <div class="m"><svg><use href="#i-eye"/></svg> 15,320</div></div></a>
+        <a class="srow"><div class="th d2"></div><div>
+          <div class="gm">서든어택</div><h3>클랜전 결승 풀옵 대결</h3>
+          <div class="m"><svg><use href="#i-eye"/></svg> 6,540</div></div></a>
+        <a class="srow"><div class="th d3"></div><div>
+          <div class="gm">던전앤파이터</div><h3>레이드 최속 트라이</h3>
+          <div class="m"><svg><use href="#i-eye"/></svg> 18,200</div></div></a>
+      </div>
+    </div>
+
+    <div class="dhead"><h2>실시간 라이브</h2><a>전체 보기</a></div>
+    <div class="dgrid">
+      <article class="dc"><div class="th"><span class="lv">LIVE</span>
+        <span class="vw"><svg><use href="#i-eye"/></svg> 9,120</span></div>
+        <div class="bd"><div class="gm">던전앤파이터</div><h3>100제 최속 클리어 도전</h3>
+          <div class="who"><span class="av"></span> 강림_dnf</div></div></article>
+      <article class="dc"><div class="th x2"><span class="lv">LIVE</span>
+        <span class="vw"><svg><use href="#i-eye"/></svg> 4,210</span></div>
+        <div class="bd"><div class="gm">마비노기</div><h3>모바일 신규 던전 공략</h3>
+          <div class="who"><span class="av"></span> 음유시인_라라</div></div></article>
+      <article class="dc"><div class="th x3"><span class="lv">LIVE</span>
+        <span class="vw"><svg><use href="#i-eye"/></svg> 5,880</span></div>
+        <div class="bd"><div class="gm">카트라이더</div><h3>스피드전 랭커 매치</h3>
+          <div class="who"><span class="av"></span> 부스터_한</div></div></article>
+      <article class="dc"><div class="th x4"><span class="lv">LIVE</span>
+        <span class="vw"><svg><use href="#i-eye"/></svg> 3,340</span></div>
+        <div class="bd"><div class="gm">바람의나라</div><h3>연 통일 서버 쟁 현장</h3>
+          <div class="who"><span class="av"></span> 도사_바람</div></div></article>
+    </div>
+    <footer class="foot">샘플 D — NX Basic 다크 확장(직접 지정) · 시스템 포인트 블루 pc-500/pc-800 액센트 + bc 그레이 다크 서피스 · type-default 스케일 보존. 시스템 아이덴티티 ↔ 스트리밍 다크 감성 절충.</footer>
+  </div>
+</section>
+
+<script>
+  const tabs=document.querySelectorAll('#tab-bar .tab');
+  const map={x:'sx',a:'sa',b:'sb',c:'sc',n:'sn',d:'sd'};
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    Object.values(map).forEach(id=>document.getElementById(id).classList.remove('on'));
+    document.getElementById(map[t.dataset.t]).classList.add('on');
+    window.scrollTo({top:0,behavior:'instant'});
+  }));
+</script>
+</body>
+</html>

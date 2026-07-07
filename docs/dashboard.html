@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NXlive — D2A 파이프라인 대시보드</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+:root{
+  --pc-100:#ecf1f9;--pc-500:#6babff;--pc-800:#0a74ff;--pc-900:#0056c7;
+  --bc-100:#e8ebf2;--bc-200:#d2d6e0;--bc-400:#b1b7c4;--bc-500:#a1a7b5;--bc-700:#747a86;--bc-900:#3d4148;--bc-1000:#17191c;
+  --bg:#f7f8fa;--surface:#fff;--live:#e5484d;--ok:#0ca678;
+  --font:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--bc-1000);font-family:var(--font);letter-spacing:-0.35px;-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding:32px 24px 60px}
+a{color:var(--pc-800);text-decoration:none}
+
+/* header */
+header{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header .logo{font-size:30px;font-weight:800;letter-spacing:-0.8px}
+header .logo b{color:var(--pc-800)}
+header .sub{color:var(--bc-700);font-size:14px;margin-top:4px}
+.badge{display:inline-flex;align-items:center;gap:7px;background:var(--pc-100);color:var(--pc-900);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;margin-left:auto}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.meta{color:var(--bc-500);font-size:12px;margin-top:6px}
+hr{border:none;border-top:1px solid var(--bc-200);margin:24px 0}
+
+h2{font-size:15px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--bc-700);margin:34px 0 14px;display:flex;align-items:center;gap:8px}
+h2::before{content:"";width:4px;height:15px;background:var(--pc-800);border-radius:2px}
+
+/* KPI cards */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.kpi{background:var(--surface);border:1px solid var(--bc-200);border-radius:16px;padding:18px}
+.kpi .label{font-size:12px;color:var(--bc-700);font-weight:600}
+.kpi .value{font-size:30px;font-weight:800;letter-spacing:-1px;margin-top:6px;line-height:1}
+.kpi .value small{font-size:14px;font-weight:700;color:var(--bc-500)}
+.kpi .note{font-size:12px;color:var(--bc-500);margin-top:7px}
+.kpi .value.blue{color:var(--pc-800)} .kpi .value.ok{color:var(--ok)}
+
+/* pipeline stepper */
+.pipe{display:grid;grid-template-columns:repeat(9,1fr);gap:8px}
+.step{background:var(--surface);border:1px solid var(--bc-200);border-radius:12px;padding:12px 10px;text-align:center;position:relative}
+.step .n{width:26px;height:26px;border-radius:50%;background:var(--ok);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.step .t{font-size:11px;font-weight:700;line-height:1.3}
+.step .d{font-size:10px;color:var(--bc-500);margin-top:3px}
+
+/* two-col */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--surface);border:1px solid var(--bc-200);border-radius:16px;padding:20px}
+.card h3{font-size:15px;font-weight:800;margin-bottom:14px}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--bc-100)}
+th{color:var(--bc-700);font-weight:700;font-size:12px}
+tr:last-child td{border-bottom:none}
+td .tag{background:var(--pc-100);color:var(--pc-800);font-weight:700;font-size:11px;padding:2px 8px;border-radius:6px}
+.ok-txt{color:var(--ok);font-weight:700}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+
+/* a11y improvement bar */
+.improve{display:flex;align-items:center;gap:14px;margin-top:6px}
+.improve .col{flex:1}
+.improve .bar{height:34px;border-radius:8px;display:flex;align-items:center;padding:0 12px;color:#fff;font-weight:800;font-size:14px}
+.improve .v1{background:var(--live);width:100%}
+.improve .v2{background:var(--ok);width:100%}
+.improve .cap{font-size:11px;color:var(--bc-700);margin-bottom:5px;font-weight:700}
+.arrow{font-size:22px;color:var(--bc-400);font-weight:800}
+
+/* severity chips */
+.sev{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.sev span{font-size:12px;font-weight:700;padding:5px 11px;border-radius:8px;border:1px solid var(--bc-200)}
+.sev .s4{background:#fff5f5;color:var(--live);border-color:#ffd8d8}
+.sev .s3{background:#eefcf6;color:var(--ok);border-color:#c3f0dd}
+.sev .s2{color:var(--bc-700)} .sev .s1{color:var(--bc-500)}
+
+/* tokens */
+.tokens{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.tok{border:1px solid var(--bc-200);border-radius:12px;overflow:hidden;background:var(--surface)}
+.tok .sw{height:52px}
+.tok .info{padding:9px 11px}
+.tok .info .u{font-size:11px;color:var(--bc-700);font-weight:700}
+.tok .info .h{font-size:12px;font-family:ui-monospace,monospace;color:var(--bc-1000)}
+
+/* next steps */
+.checks{list-style:none;display:flex;flex-direction:column;gap:9px}
+.checks li{background:var(--surface);border:1px solid var(--bc-200);border-radius:12px;padding:12px 14px;font-size:13px;display:flex;gap:10px;align-items:center}
+.checks li::before{content:"○";color:var(--bc-400);font-weight:800}
+.checks li.done::before{content:"✓";color:var(--ok)}
+
+footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
+
+@media(max-width:860px){
+  .kpis{grid-template-columns:1fr 1fr}
+  .pipe{grid-template-columns:repeat(3,1fr)}
+  .cols,.tokens{grid-template-columns:1fr}
+  .tokens{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <div class="logo">NX<b>live</b> 대시보드</div>
+      <div class="sub">D2A 전체 파이프라인 + UX/UI 스킬 통합 테스트 · 넥슨 게임 라이브 스트리밍 MVP</div>
+      <div class="meta">Mock 데이터 · 인증 없음 · React 19 + Vite + TS + Tailwind · NX Basic 1.0v (라이트)</div>
+    </div>
+    <span class="badge"><span class="dot"></span> MVP 완료 · Phase 1</span>
+  </header>
+
+  <hr />
+
+  <!-- KPI -->
+  <div class="kpis">
+    <div class="kpi"><div class="label">페이지</div><div class="value blue">5</div><div class="note">홈·시청·채널·클립·검색</div></div>
+    <div class="kpi"><div class="label">빌드</div><div class="value ok">PASS</div><div class="note">60 모듈 · TS 에러 0 · 콘솔 0</div></div>
+    <div class="kpi"><div class="label">배포 블로커 (UT S4)</div><div class="value ok">0</div><div class="note">Critical 결함 없음</div></div>
+    <div class="kpi"><div class="label">발견 → 시청</div><div class="value blue">1<small> 클릭</small></div><div class="note">핵심 플로우 효율</div></div>
+  </div>
+
+  <!-- Pipeline -->
+  <h2>파이프라인 진행 (9/9)</h2>
+  <div class="pipe">
+    <div class="step"><div class="n">1</div><div class="t">boilerplate<br>-setup</div><div class="d">세팅·결정</div></div>
+    <div class="step"><div class="n">2</div><div class="t">디자인 확정</div><div class="d">5안→확정</div></div>
+    <div class="step"><div class="n">3</div><div class="t">write<br>-scenario</div><div class="d">흐름·과업</div></div>
+    <div class="step"><div class="n">4</div><div class="t">reference<br>-proposal</div><div class="d">톤·레퍼런스</div></div>
+    <div class="step"><div class="n">5</div><div class="t">ui-design<br>-workflow</div><div class="d">flow·상태</div></div>
+    <div class="step"><div class="n">6</div><div class="t">create-spec</div><div class="d">5페이지 코딩</div></div>
+    <div class="step"><div class="n">7</div><div class="t">ai-usability<br>-test</div><div class="d">UT 5종</div></div>
+    <div class="step"><div class="n">8</div><div class="t">design<br>-handoff</div><div class="d">HANDOFF</div></div>
+    <div class="step"><div class="n">9</div><div class="t">run-phase</div><div class="d">Phase 1</div></div>
+  </div>
+
+  <div class="cols" style="margin-top:20px">
+    <!-- v1 vs v2 -->
+    <div class="card">
+      <h3>핵심 발견 — 파이프라인 순서 (v1 vs v2)</h3>
+      <table>
+        <tr><th>항목</th><th>v1 · 코딩 먼저</th><th>v2 · 설계 먼저</th></tr>
+        <tr><td>접근성 결함</td><td>UT 사후 탐지→수정</td><td class="ok-txt">설계 선명시→예방</td></tr>
+        <tr><td>UT S3</td><td>1건</td><td class="ok-txt">0건</td></tr>
+        <tr><td>설계 문서</td><td>사후 문서화</td><td class="ok-txt">구현을 이끔</td></tr>
+      </table>
+      <div class="cap" style="margin-top:16px;font-size:11px;font-weight:700;color:var(--bc-700)">키보드 접근 불가 요소 (클릭 전용)</div>
+      <div class="improve">
+        <div class="col"><div class="cap">v1</div><div class="bar v1">12</div></div>
+        <div class="arrow">→</div>
+        <div class="col"><div class="cap">v2</div><div class="bar v2">0</div></div>
+      </div>
+    </div>
+
+    <!-- UT -->
+    <div class="card">
+      <h3>AI 사용성 테스트 (Nielsen severity)</h3>
+      <div class="sev">
+        <span class="s4">S4 Critical · 0</span>
+        <span class="s3">S3 Major · v1 1 → v2 0</span>
+        <span class="s2">S2 Minor · 2</span>
+        <span class="s1">S1 Cosmetic · 1</span>
+      </div>
+      <table style="margin-top:14px">
+        <tr><th>페르소나</th><th>완료율</th></tr>
+        <tr><td>초보자 (발견→시청)</td><td class="ok-txt">100%</td></tr>
+        <tr><td>파워유저 (채널 도달·팔로우)</td><td class="ok-txt">100%</td></tr>
+        <tr><td>접근성 (키보드 전용)</td><td class="ok-txt">100% <span class="mono">(v1 부분→v2 완전)</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Screens -->
+  <h2>화면 · 기능 상태</h2>
+  <div class="card">
+    <table>
+      <tr><th>화면</th><th>경로</th><th>구성</th><th>상태</th></tr>
+      <tr><td>홈</td><td class="mono">/</td><td>히어로·실시간 그리드·인기 스트리머·오늘의 편성표</td><td class="ok-txt">✓</td></tr>
+      <tr><td>라이브 시청 ★</td><td class="mono">/watch/:id</td><td>Mock 플레이어·실시간 채팅·추천</td><td class="ok-txt">✓</td></tr>
+      <tr><td>채널</td><td class="mono">/channel/:id</td><td>배너·프로필·방송/클립 탭·팔로우</td><td class="ok-txt">✓</td></tr>
+      <tr><td>클립</td><td class="mono">/clips</td><td>카드 그리드·게임 필터 칩</td><td class="ok-txt">✓</td></tr>
+      <tr><td>검색</td><td class="mono">/search?q=</td><td>통합 검색·탭·빈 상태</td><td class="ok-txt">✓</td></tr>
+    </table>
+  </div>
+
+  <!-- Tokens -->
+  <h2>디자인 토큰 — NX Basic 1.0v</h2>
+  <div class="tokens">
+    <div class="tok"><div class="sw" style="background:#0a74ff"></div><div class="info"><div class="u">Primary · pc-800</div><div class="h">#0a74ff</div></div></div>
+    <div class="tok"><div class="sw" style="background:#6babff"></div><div class="info"><div class="u">pc-500</div><div class="h">#6babff</div></div></div>
+    <div class="tok"><div class="sw" style="background:#17191c"></div><div class="info"><div class="u">Text · bc-1000</div><div class="h">#17191c</div></div></div>
+    <div class="tok"><div class="sw" style="background:#d2d6e0"></div><div class="info"><div class="u">Border · bc-200</div><div class="h">#d2d6e0</div></div></div>
+    <div class="tok"><div class="sw" style="background:#f7f8fa;border-bottom:1px solid #e8ebf2"></div><div class="info"><div class="u">배경</div><div class="h">#f7f8fa</div></div></div>
+  </div>
+
+  <div class="cols" style="margin-top:20px">
+    <div class="card">
+      <h3>산출물</h3>
+      <table>
+        <tr><td class="mono">NXlive</td><td>v1 (원래 순서)</td></tr>
+        <tr><td class="mono">NXlive-v2</td><td>v2 (정석 순서·설계 선행)</td></tr>
+        <tr><td class="mono">frontend/</td><td>React 5페이지 · Zustand · Mock</td></tr>
+        <tr><td class="mono">specs/001-nxlive-mvp/</td><td>spec·scenario·reference-board·flow·ui-design·UT 5종·HANDOFF</td></tr>
+        <tr><td class="mono">design/samples.html</td><td>디자인 샘플 5안 + 확정안</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>다음 단계</h3>
+      <ul class="checks">
+        <li>Phase 2 — 게임 카테고리 목록 페이지</li>
+        <li>Phase 2 — 실제 썸네일 이미지 연동</li>
+        <li>Playwright 스모크 실제 실행</li>
+        <li>ux-research 페르소나 실검증 (현재 🔵 가설)</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>NXlive · D2A 프로세스 통합 테스트 · 2026-07 · NX Basic 1.0v 라이트 테마</footer>
+</div>
+</body>
+</html>

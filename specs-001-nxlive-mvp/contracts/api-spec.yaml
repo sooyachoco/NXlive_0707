@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: NXlive API (Phase 2 계약 — MVP는 Mock)
+  version: 0.1.0
+  description: >
+    MVP는 프론트 Mock(`src/mocks`)으로 동작하며 백엔드가 없다.
+    아래는 `frontend/src/services`가 USE_MOCK=false 시 호출할 계약(Phase 2 대비).
+servers:
+  - url: /api
+paths:
+  /streams:
+    get:
+      summary: 라이브 스트림 목록
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { type: array, items: { $ref: '#/components/schemas/LiveStream' } } } } }
+  /streams/{id}:
+    get:
+      summary: 스트림 단건
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses:
+        '200': { description: OK, content: { application/json: { schema: { $ref: '#/components/schemas/LiveStream' } } } }
+        '404': { description: Not Found }
+  /channels:
+    get: { summary: 채널 목록, responses: { '200': { description: OK } } }
+  /channels/{id}:
+    get:
+      summary: 채널 단건
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: OK }, '404': { description: Not Found } }
+  /channels/{id}/streams:
+    get: { summary: 채널의 방송 목록, parameters: [{ name: id, in: path, required: true, schema: { type: string } }], responses: { '200': { description: OK } } }
+  /channels/{id}/clips:
+    get: { summary: 채널의 클립 목록, parameters: [{ name: id, in: path, required: true, schema: { type: string } }], responses: { '200': { description: OK } } }
+  /clips:
+    get: { summary: 클립 목록, responses: { '200': { description: OK } } }
+  /games:
+    get: { summary: 게임 목록, responses: { '200': { description: OK } } }
+  /search:
+    get:
+      summary: 통합 검색
+      parameters: [{ name: q, in: query, required: true, schema: { type: string } }]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  games: { type: array, items: { $ref: '#/components/schemas/Game' } }
+                  channels: { type: array, items: { $ref: '#/components/schemas/Channel' } }
+                  clips: { type: array, items: { $ref: '#/components/schemas/Clip' } }
+components:
+  schemas:
+    Game:
+      type: object
+      properties: { id: { type: string }, name: { type: string }, liveCount: { type: integer } }
+    Channel:
+      type: object
+      properties:
+        id: { type: string }
+        handle: { type: string }
+        displayName: { type: string }
+        game: { type: string }
+        followers: { type: integer }
+        isLive: { type: boolean }
+        bio: { type: string }
+        avatarTone: { type: string }
+    LiveStream:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        game: { type: string }
+        channelId: { type: string }
+        channelName: { type: string }
+        viewers: { type: integer }
+        thumb: { type: string }
+        startedAt: { type: string, format: date-time }
+    Clip:
+      type: object
+      properties:
+        id: { type: string }
+        title: { type: string }
+        game: { type: string }
+        channelId: { type: string }
+        channelName: { type: string }
+        views: { type: integer }
+        duration: { type: string }
+        thumb: { type: string }
