@@ -91,6 +91,26 @@ td .tag{background:var(--pc-100);color:var(--pc-800);font-weight:700;font-size:1
 
 footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
 
+/* v1/v2 skill timelines */
+.tl-note{font-size:13px;color:var(--bc-700);margin:2px 2px 16px;line-height:1.6}
+.tl-card h3 .tag{font-size:11px;margin-left:6px;padding:2px 8px;border-radius:6px;font-weight:800}
+ol.tl{list-style:none;counter-reset:tl;display:flex;flex-direction:column;gap:8px}
+ol.tl li{counter-increment:tl;display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:10px;border:1px solid var(--bc-200);border-left:4px solid var(--bc-400);background:var(--surface)}
+ol.tl li::before{content:counter(tl);flex:none;width:20px;height:20px;border-radius:50%;background:var(--bc-100);color:var(--bc-700);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+ol.tl li .txt{display:flex;flex-direction:column;gap:2px}
+ol.tl li .s{font-weight:800;font-size:13px}
+ol.tl li .d{font-size:12px;color:var(--bc-700);line-height:1.4}
+ol.tl li.design{border-left-color:var(--pc-800);background:#f5f9ff}
+ol.tl li.code{border-left-color:var(--bc-1000);background:#f4f5f7}
+ol.tl li.code .s::after{content:" ★";color:var(--pc-800)}
+ol.tl li.late{border-left-color:#f08c00;background:#fff9f0}
+ol.tl li.warn{border-left-color:var(--live);background:#fff5f5}
+ol.tl li.fix{border-left-color:#f08c00;background:#fff9f0}
+ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--bc-700);margin:12px 2px 0;font-weight:600}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
 @media(max-width:860px){
   .kpis{grid-template-columns:1fr 1fr}
   .pipe{grid-template-columns:repeat(3,1fr)}
@@ -135,17 +155,62 @@ footer{margin-top:40px;color:var(--bc-500);font-size:12px;text-align:center}
     <div class="step"><div class="n">9</div><div class="t">run-phase</div><div class="d">Phase 1</div></div>
   </div>
 
+  <!-- v1/v2 skill timelines -->
+  <h2>진행 단계별 스킬 발동 — v1 vs v2</h2>
+  <p class="tl-note">두 실행의 유일한 차이는 <b>설계 스킬(write-scenario · reference-proposal · ui-design-workflow)</b>과 <b>코딩(create-spec)</b>의 순서다. v1은 코딩을 먼저 해 설계 스킬이 <b>사후 문서화</b>가 됐고 → 접근성 결함을 사후 수정. v2는 설계를 먼저 해 <b>코딩을 이끌어</b> → 결함을 예방했다.</p>
+  <div class="cols">
+    <div class="card tl-card">
+      <h3>v1 — 원래 순서 <span class="tag" style="background:#fff5f5;color:var(--live)">코딩 먼저</span></h3>
+      <ol class="tl">
+        <li><div class="txt"><span class="s">boilerplate-setup</span><span class="d">세팅 · 결정 확정</span></div></li>
+        <li><div class="txt"><span class="s">디자인 샘플 (Q5*)</span><span class="d">5안(A/B/C/N/D) → 확정안</span></div></li>
+        <li class="code"><div class="txt"><span class="s">create-spec</span><span class="d">코딩: 5페이지 React 구현</span></div></li>
+        <li class="late"><div class="txt"><span class="s">write-scenario</span><span class="d">이미 만든 화면의 사후 문서화</span></div></li>
+        <li class="late"><div class="txt"><span class="s">reference-proposal</span><span class="d">사후 문서화</span></div></li>
+        <li class="late"><div class="txt"><span class="s">ui-design-workflow</span><span class="d">사후 문서화</span></div></li>
+        <li class="warn"><div class="txt"><span class="s">ai-usability-test</span><span class="d">F-001 접근성 결함 발견 (S3=1)</span></div></li>
+        <li><div class="txt"><span class="s">design-handoff</span><span class="d">HANDOFF.md 생성</span></div></li>
+        <li class="fix"><div class="txt"><span class="s">run-phase (P1)</span><span class="d">F-001 수정 — 키보드 접근 12→0</span></div></li>
+      </ol>
+    </div>
+    <div class="card tl-card">
+      <h3>v2 — 정석 순서 <span class="tag" style="background:#eefcf6;color:var(--ok)">설계 먼저</span></h3>
+      <ol class="tl">
+        <li><div class="txt"><span class="s">boilerplate-setup</span><span class="d">세팅 (톤 확정은 뒤로 이연)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">write-scenario</span><span class="d">흐름 · 페르소나 · 과업 (최선행)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">reference-proposal</span><span class="d">기준 톤 확정 (design-direction)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">ui-design-workflow</span><span class="d">flow 락 + "네이티브 a/button" 접근성 요구 명시</span></div></li>
+        <li class="code"><div class="txt"><span class="s">create-spec</span><span class="d">코딩: 설계 이행 · 접근성 선반영</span></div></li>
+        <li class="ok"><div class="txt"><span class="s">ai-usability-test</span><span class="d">S3=0 — F-001 예방됨</span></div></li>
+        <li><div class="txt"><span class="s">design-handoff</span><span class="d">HANDOFF.md 생성</span></div></li>
+        <li class="ok"><div class="txt"><span class="s">run-phase (P1)</span><span class="d">검증만 — 수정 불필요</span></div></li>
+      </ol>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--pc-800)"></i> 설계 스킬</span>
+    <span><i style="background:var(--bc-1000)"></i> 코딩(create-spec)</span>
+    <span><i style="background:#f08c00"></i> 사후 문서화 / 재작업</span>
+    <span><i style="background:var(--live)"></i> 결함 발견</span>
+    <span><i style="background:var(--ok)"></i> 결함 예방 / 검증</span>
+  </div>
+
   <div class="cols" style="margin-top:20px">
     <!-- v1 vs v2 -->
     <div class="card">
       <h3>핵심 발견 — 파이프라인 순서 (v1 vs v2)</h3>
       <table>
         <tr><th>항목</th><th>v1 · 코딩 먼저</th><th>v2 · 설계 먼저</th></tr>
-        <tr><td>접근성 결함</td><td>UT 사후 탐지→수정</td><td class="ok-txt">설계 선명시→예방</td></tr>
-        <tr><td>UT S3</td><td>1건</td><td class="ok-txt">0건</td></tr>
-        <tr><td>설계 문서</td><td>사후 문서화</td><td class="ok-txt">구현을 이끔</td></tr>
+        <tr><td>설계 스킬 시점</td><td>코딩 후 (사후 문서화)</td><td class="ok-txt">코딩 전 (구현 주도)</td></tr>
+        <tr><td>디자인 톤 확정</td><td>boilerplate Q5* 샘플</td><td>reference-proposal</td></tr>
+        <tr><td>접근성 결함 F-001</td><td>사후 탐지 → 수정</td><td class="ok-txt">설계 선명시 → 예방</td></tr>
+        <tr><td>UT S3 (Major)</td><td>1건</td><td class="ok-txt">0건</td></tr>
+        <tr><td>키보드 접근불가(초기)</td><td>12</td><td class="ok-txt">0</td></tr>
+        <tr><td>재작업 커밋</td><td>F-001 수정 발생</td><td class="ok-txt">없음</td></tr>
+        <tr><td>파이프라인 단계</td><td>9</td><td>8 (톤 통합·검증화)</td></tr>
+        <tr><td>최종 품질</td><td>동일 ✅</td><td>동일 ✅</td></tr>
       </table>
-      <div class="cap" style="margin-top:16px;font-size:11px;font-weight:700;color:var(--bc-700)">키보드 접근 불가 요소 (클릭 전용)</div>
+      <div class="cap" style="margin-top:16px;font-size:11px;font-weight:700;color:var(--bc-700)">키보드 접근 불가 요소 (초기 구현 시점)</div>
       <div class="improve">
         <div class="col"><div class="cap">v1</div><div class="bar v1">12</div></div>
         <div class="arrow">→</div>
