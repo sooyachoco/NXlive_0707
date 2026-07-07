@@ -237,6 +237,23 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
     </div>
   </div>
 
+  <!-- Efficiency -->
+  <h2>효율 비교 · 권장</h2>
+  <div class="card">
+    <table>
+      <tr><th>버전</th><th>1회 총비용</th><th>재작업</th><th>자동 방어</th><th>결과물</th></tr>
+      <tr><td>v1 · 코딩 먼저</td><td>중</td><td>있음 (F-001 사후수정)</td><td>없음</td><td>동일</td></tr>
+      <tr><td><b>v2 · 설계 선행</b></td><td class="ok-txt"><b>최저</b></td><td class="ok-txt">없음</td><td>없음</td><td>동일</td></tr>
+      <tr><td>v3 · 완전 병합</td><td>v2 + 병합 셋업</td><td class="ok-txt">없음</td><td class="ok-txt">ut: 게이트·SSOT</td><td>동일</td></tr>
+    </table>
+    <p style="margin-top:12px;font-size:12px;line-height:1.7;background:var(--pc-100);border-radius:8px;padding:10px 12px">
+      <b>📌 권장</b> — <b>일회성(이 프로젝트 하나)</b>이면 <b>v2</b>가 최효율(정석 순서, 재작업 0, 군더더기 없음).
+      <b>반복·팀 파이프라인</b>이면 <b>v3</b>가 최효율(병합 셋업 1회, 이후 매 사이클 자동 게이트·SSOT 이득으로 amortize).
+      <b>v1은 지양</b> — 재작업 발생 + 설계 스킬이 사후 문서화로 헛돎. <br>
+      → 결과물은 셋 다 동일하므로 <b>효율은 곧 과정·환경 선택의 문제</b>.
+    </p>
+  </div>
+
   <!-- Token usage (estimate) -->
   <h2>토큰 사용량 (추정)</h2>
   <div class="card">
