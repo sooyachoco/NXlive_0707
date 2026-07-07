@@ -222,6 +222,23 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
     </div>
   </div>
 
+  <!-- Token usage (estimate) -->
+  <h2>토큰 사용량 (추정)</h2>
+  <div class="card">
+    <p style="font-size:12px;color:var(--bc-700);margin-bottom:14px;line-height:1.6">⚠️ 정확한 측정값이 아니라 <b>작업량 기반 대략 추정</b>입니다. 정확한 입력/출력/비용은 Claude Code <span class="mono">/cost</span>에서 확인하세요.</p>
+    <table>
+      <tr><th>단계</th><th style="width:210px">추정 비중</th><th>주요 소모 요인</th></tr>
+      <tr><td>탐색 · 대형 스킬 문서 읽기</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:20%;height:8px;background:var(--pc-800)"></div></div><span class="mono">~20%</span></div></td><td>boilerplate-setup·create-spec 등 대형 파일</td></tr>
+      <tr><td>v1 구현 (create-spec)</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:25%;height:8px;background:var(--pc-800)"></div></div><span class="mono">~25%</span></div></td><td>5페이지 코드 생성 · 빌드 · 프리뷰 검증</td></tr>
+      <tr><td>v1 UX/UI 스킬 산출물</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:10%;height:8px;background:var(--pc-500)"></div></div><span class="mono">~10%</span></div></td><td>scenario·reference·ui-design·UT·HANDOFF</td></tr>
+      <tr><td>v2 클린 재실행</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:20%;height:8px;background:var(--ok)"></div></div><span class="mono">~20%</span></div></td><td>재스캐폴딩 · 문서 · 구현 이식 · 빌드</td></tr>
+      <tr><td>배포 (GitHub·Pages) · 대시보드</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:15%;height:8px;background:var(--bc-700)"></div></div><span class="mono">~15%</span></div></td><td>빌드·푸시·Pages·대시보드 HTML</td></tr>
+      <tr><td>Notion 정리</td><td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;background:#ecf1f9;border-radius:5px;overflow:hidden"><div style="width:10%;height:8px;background:var(--bc-700)"></div></div><span class="mono">~10%</span></div></td><td>주간보고·대시보드 페이지 작성</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--bc-700);margin-top:14px;line-height:1.6"><b>추정 총량</b> (매우 대략): 입력 누적 <span class="mono">≈ 30만~50만 토큰</span> · 생성(출력) <span class="mono">≈ 5만~9만 토큰</span>. 대형 스킬 파일 반복 로드 + 다수 파일 생성 + 반복 빌드/검증이 주 요인.</p>
+    <p style="font-size:12px;margin-top:8px;line-height:1.6"><b>v1 vs v2</b> — <span style="color:var(--live);font-weight:700">v1</span>이 더 큼(처음부터 전체 구현 + F-001 <b>사후 재작업</b>). <span style="color:var(--ok);font-weight:700">v2</span>는 검증된 구현 이식·설계 선행으로 <b>재작업이 없어 상대적으로 가벼움</b> — 순서 교정의 효율 이점이 토큰에도 반영.</p>
+  </div>
+
   <!-- Screens -->
   <h2>화면 · 기능 상태</h2>
   <div class="card">
