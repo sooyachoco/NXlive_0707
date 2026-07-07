@@ -30,7 +30,7 @@ export default function Schedule() {
                 {progs.map((p, i) => (
                   <button
                     key={i}
-                    className={`prog ${p.color}`}
+                    className={`prog${p.live ? ' live' : ''}`}
                     style={{ left: `${p.start * UNIT}%`, width: `${p.span * UNIT}%` }}
                     onClick={() => navigate(`/channel/${p.channelId}`)}
                     aria-label={`${p.title} — ${p.channelName} 채널로 이동`}
