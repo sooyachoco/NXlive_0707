@@ -142,9 +142,9 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
   </div>
 
   <!-- v1/v2 skill timelines -->
-  <h2>진행 단계별 스킬 발동 — v1 vs v2</h2>
-  <p class="tl-note">두 실행의 유일한 차이는 <b>설계 스킬(write-scenario · reference-proposal · ui-design-workflow)</b>과 <b>코딩(create-spec)</b>의 순서다. v1은 코딩을 먼저 해 설계 스킬이 <b>사후 문서화</b>가 됐고 → 접근성 결함을 사후 수정. v2는 설계를 먼저 해 <b>코딩을 이끌어</b> → 결함을 예방했다.</p>
-  <div class="cols">
+  <h2>진행 단계별 스킬 발동 — v1 vs v2 vs v3</h2>
+  <p class="tl-note">차이는 <b>설계 스킬(write-scenario · reference-proposal · ui-design-workflow)</b>과 <b>코딩(create-spec)</b>의 순서, 그리고 <b>번들 병합 수준</b>이다. v1은 코딩을 먼저 해 설계 스킬이 <b>사후 문서화</b>(→ 결함 사후 수정), v2는 설계를 먼저 해 <b>코딩을 이끔</b>(→ 결함 예방), <b>v3</b>는 v2 순서 그대로 <b>완전 병합 환경</b>(SSOT 적재 + <code>ut:</code> 게이트)에서 재검증했다. <b>세 버전의 결과물은 동일</b>하다.</p>
+  <div class="cols" style="grid-template-columns:repeat(3,1fr)">
     <div class="card tl-card">
       <h3>v1 — 원래 순서 <span class="tag" style="background:#fff5f5;color:var(--live)">코딩 먼저</span></h3>
       <ol class="tl">
@@ -170,6 +170,20 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
         <li class="ok"><div class="txt"><span class="s">ai-usability-test</span><span class="d">S3=0 — F-001 예방됨</span></div></li>
         <li><div class="txt"><span class="s">design-handoff</span><span class="d">HANDOFF.md 생성</span></div></li>
         <li class="ok"><div class="txt"><span class="s">run-phase (P1)</span><span class="d">검증만 — 수정 불필요</span></div></li>
+      </ol>
+    </div>
+    <div class="card tl-card">
+      <h3>v3 — 완전 병합 <span class="tag" style="background:#ecf1f9;color:var(--pc-800)">bundle 통합</span></h3>
+      <ol class="tl">
+        <li><div class="txt"><span class="s">boilerplate-setup</span><span class="d">번들 완전 병합 (25스킬·ut게이트)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">ux-research-sync</span><span class="d">SSOT 실적재 (페르소나·여정·과업)</span></div></li>
+        <li class="design"><div class="txt"><span class="s">write-scenario</span><span class="d">SSOT 인용 · 흐름</span></div></li>
+        <li class="design"><div class="txt"><span class="s">reference-proposal</span><span class="d">기준 톤</span></div></li>
+        <li class="design"><div class="txt"><span class="s">ui-design-workflow</span><span class="d">flow 락 + 접근성 요구</span></div></li>
+        <li class="code"><div class="txt"><span class="s">create-spec</span><span class="d">코딩: 설계 이행 · 프론트 재사용</span></div></li>
+        <li class="ok"><div class="txt"><span class="s">ai-usability-test</span><span class="d">S3=0 — 예방</span></div></li>
+        <li><div class="txt"><span class="s">design-handoff</span><span class="d">HANDOFF.md</span></div></li>
+        <li class="ok"><div class="txt"><span class="s">run-phase (P1)</span><span class="d">ut: 게이트 검증 (GOOD통과 / BAD차단)</span></div></li>
       </ol>
     </div>
   </div>
