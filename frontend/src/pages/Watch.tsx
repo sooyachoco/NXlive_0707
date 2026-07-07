@@ -6,6 +6,7 @@ import { getStreamById, getChannelById, getLiveStreams } from '../services';
 import { CHAT_SEED, randomChat } from '../mocks/data';
 import { IconPlay, IconEye } from '../components/icons';
 import { EmptyState } from '../components/states';
+import { thumbStyle } from '../lib/thumbs';
 
 export default function Watch() {
   const { streamId } = useParams();
@@ -55,7 +56,7 @@ export default function Watch() {
   return (
     <div className="watch">
       <div>
-        <div className="player">
+        <div className="player" style={thumbStyle(stream.game)}>
           <span className="badge-live"><span className="dot" /> ON AIR</span>
           <div className="plc"><IconPlay /><span>Mock 플레이어 — {stream.game}</span></div>
         </div>
@@ -80,7 +81,7 @@ export default function Watch() {
         <div className="grid-4">
           {others.map((s) => (
             <Link key={s.id} to={`/watch/${s.id}`} className="live-card">
-              <div className={`thumb ${s.thumb}`}>
+              <div className={`thumb ${s.thumb}`} style={thumbStyle(s.game)}>
                 <span className="viewers"><IconEye /> {s.viewers.toLocaleString()}</span>
               </div>
               <div className="body"><div className="game">{s.game}</div><h3>{s.title}</h3></div>

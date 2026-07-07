@@ -5,6 +5,7 @@ import { getClips } from '../services';
 import { formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { GridSkeleton, EmptyState } from '../components/states';
+import { thumbStyle } from '../lib/thumbs';
 
 export default function Clips() {
   const [clips, setClips] = useState<Clip[] | null>(null);
@@ -36,7 +37,7 @@ export default function Clips() {
           <div className="grid-3">
             {filtered.map((c) => (
               <Link key={c.id} to={`/channel/${c.channelId}`} className="live-card clip-card">
-                <div className={`thumb ${c.thumb}`}>
+                <div className={`thumb ${c.thumb}`} style={thumbStyle(c.game)}>
                   <span className="dur">{c.duration}</span>
                   <span className="viewers"><IconEye /> {formatCount(c.views)}</span>
                 </div>

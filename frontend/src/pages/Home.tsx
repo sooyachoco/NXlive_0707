@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Channel, LiveStream } from '../types';
 import { getLiveStreams, getChannels } from '../services';
-import { formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import LiveCard from '../components/LiveCard';
 import StreamerCard from '../components/StreamerCard';
 import Schedule from '../components/Schedule';
 import { GridSkeleton } from '../components/states';
+import { thumbStyle } from '../lib/thumbs';
 
 export default function Home() {
   const [streams, setStreams] = useState<LiveStream[] | null>(null);
@@ -34,9 +34,9 @@ export default function Home() {
     <>
       {/* 피처: 대표 라이브 + 실시간 랭킹 */}
       <div className="feature">
-        <Link to={`/watch/${hero.id}`} className={`hero thumb ${hero.thumb}`}>
+        <Link to={`/watch/${hero.id}`} className={`hero thumb ${hero.thumb}`} style={thumbStyle(hero.game)}>
           <div className="ov">
-            <span className="badge-live"><span className="dot" /> LIVE · {formatCount(hero.viewers)}</span>
+            <span className="badge-live"><span className="dot" /> LIVE</span>
             <div>
               <h1>{hero.title}</h1>
               <div className="who">
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="rank">
           {ranking.map((s) => (
             <Link key={s.id} to={`/watch/${s.id}`} className="row">
-              <div className={`thumb ${s.thumb}`} />
+              <div className={`thumb ${s.thumb}`} style={thumbStyle(s.game)} />
               <div>
                 <div className="game">{s.game}</div>
                 <h3>{s.title}</h3>

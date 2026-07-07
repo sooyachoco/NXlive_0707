@@ -75,7 +75,7 @@ img { display: block; max-width: 100%; }
 .thumb.g3 { background: linear-gradient(135deg, #d3e7f6, #b3d3ee); }
 .thumb.g4 { background: linear-gradient(135deg, #e0dcf0, #cabfe6); }
 .thumb.g5 { background: linear-gradient(135deg, #d9ece3, #bcdccd); }
-.badge-live { display: inline-flex; align-items: center; gap: 6px; background: var(--live); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
+.badge-live { display: inline-flex; align-self: flex-start; width: fit-content; white-space: nowrap; align-items: center; gap: 6px; background: var(--live); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 5px; }
 .badge-live .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: pulse 1.3s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
 .viewers { display: inline-flex; align-items: center; gap: 5px; background: rgba(23,25,28,.82); color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 6px; }

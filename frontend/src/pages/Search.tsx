@@ -4,6 +4,7 @@ import { search, type SearchResult } from '../services';
 import { formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { GridSkeleton, EmptyState } from '../components/states';
+import { thumbStyle } from '../lib/thumbs';
 
 type Tab = '전체' | '게임' | '스트리머' | '클립';
 
@@ -49,7 +50,7 @@ export default function Search() {
           <div className="grid-4" style={{ marginBottom: 30 }}>
             {res.channels.map((c) => (
               <Link key={c.id} to={`/channel/${c.id}`} className="live-card">
-                <div className={`thumb ${c.avatarTone}`} style={{ height: 110 }}>
+                <div className={`thumb ${c.avatarTone}`} style={{ height: 110, ...thumbStyle(c.game) }}>
                   {c.isLive && <span className="badge-live"><span className="dot" /> LIVE</span>}
                 </div>
                 <div className="body"><div className="game">{c.game}</div><h3>{c.displayName}</h3>
@@ -66,7 +67,7 @@ export default function Search() {
           <div className="grid-3">
             {res.clips.map((c) => (
               <Link key={c.id} to={`/channel/${c.channelId}`} className="live-card clip-card">
-                <div className={`thumb ${c.thumb}`}>
+                <div className={`thumb ${c.thumb}`} style={thumbStyle(c.game)}>
                   <span className="dur">{c.duration}</span>
                   <span className="viewers"><IconEye /> {formatCount(c.views)}</span>
                 </div>

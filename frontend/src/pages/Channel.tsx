@@ -5,6 +5,7 @@ import { getChannelById, getStreamsByChannel, getClipsByChannel } from '../servi
 import { useAppStore, formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { EmptyState } from '../components/states';
+import { thumbStyle } from '../lib/thumbs';
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -57,7 +58,7 @@ export default function Channel() {
           : <div className="grid-3">
               {streams.map((s) => (
                 <Link key={s.id} to={`/watch/${s.id}`} className="live-card">
-                  <div className={`thumb ${s.thumb}`}>
+                  <div className={`thumb ${s.thumb}`} style={thumbStyle(s.game)}>
                     {channel.isLive && <span className="badge-live"><span className="dot" /> LIVE</span>}
                     <span className="viewers"><IconEye /> {s.viewers.toLocaleString()}</span>
                   </div>
@@ -73,7 +74,7 @@ export default function Channel() {
           : <div className="grid-3">
               {clips.map((c) => (
                 <div key={c.id} className="live-card clip-card">
-                  <div className={`thumb ${c.thumb}`}>
+                  <div className={`thumb ${c.thumb}`} style={thumbStyle(c.game)}>
                     <span className="dur">{c.duration}</span>
                     <span className="viewers"><IconEye /> {formatCount(c.views)}</span>
                   </div>
