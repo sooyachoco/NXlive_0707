@@ -30,9 +30,10 @@ export default function Channel() {
 
   return (
     <>
-      <div className="ch-banner" style={bannerStyle(channel.id)} />
-      <div className="ch-head">
+      <div className="ch-banner" style={bannerStyle(channel.id)}>
         <span className={`avatar ch-avatar ${channel.avatarTone}`} style={avatarStyle(channel.id)} />
+      </div>
+      <div className="ch-head">
         <div className="ch-meta">
           <h1>{channel.displayName}{channel.isLive && <span className="badge-live"><span className="dot" /> LIVE</span>}</h1>
           <p>{channel.game} · 팔로워 {formatCount(channel.followers)}</p>
