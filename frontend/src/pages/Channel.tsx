@@ -5,7 +5,7 @@ import { getChannelById, getStreamsByChannel, getClipsByChannel } from '../servi
 import { useAppStore, formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { EmptyState } from '../components/states';
-import { thumbStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle } from '../lib/thumbs';
 
 export default function Channel() {
   const { channelId } = useParams();
@@ -32,7 +32,7 @@ export default function Channel() {
     <>
       <div className="ch-banner">
         <div className="ch-profile">
-          <span className={`avatar ${channel.avatarTone}`} />
+          <span className={`avatar ${channel.avatarTone}`} style={avatarStyle(channel.id)} />
           <div className="meta">
             <h1>{channel.displayName}{channel.isLive && <span className="badge-live" style={{ marginLeft: 10, verticalAlign: 'middle' }}><span className="dot" /> LIVE</span>}</h1>
             <p>{channel.game} · 팔로워 {formatCount(channel.followers)}</p>

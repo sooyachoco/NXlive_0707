@@ -6,7 +6,7 @@ import { getStreamById, getChannelById, getLiveStreams } from '../services';
 import { CHAT_SEED, randomChat } from '../mocks/data';
 import { IconPlay, IconEye } from '../components/icons';
 import { EmptyState } from '../components/states';
-import { thumbStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle } from '../lib/thumbs';
 
 export default function Watch() {
   const { streamId } = useParams();
@@ -63,7 +63,7 @@ export default function Watch() {
         <div className="watch-info">
           <h1>{stream.title}</h1>
           <div className="watch-meta">
-            <Link to={`/channel/${stream.channelId}`} className="avatar" style={{ width: 46, height: 46 }} aria-label="채널" />
+            <Link to={`/channel/${stream.channelId}`} className="avatar" style={{ width: 46, height: 46, ...avatarStyle(stream.channelId) }} aria-label="채널" />
             <div>
               <div className="n">
                 <Link to={`/channel/${stream.channelId}`}>{stream.channelName}</Link>

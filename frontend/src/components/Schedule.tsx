@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { SCHEDULE, SCHEDULE_HOURS } from '../mocks/data';
+import { avatarStyle } from '../lib/thumbs';
 
 const UNIT = 100 / 6; // 6 시간 칸
 
@@ -22,7 +23,7 @@ export default function Schedule() {
           return (
             <div className="srow" key={cid}>
               <div className="sname">
-                <span className="avatar" /> {name}
+                <span className="avatar" style={avatarStyle(cid)} /> {name}
                 {anyLive && <span className="lv" />}
               </div>
               <div className="track">

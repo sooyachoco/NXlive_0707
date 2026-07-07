@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { Channel } from '../types';
 import { useAppStore, formatCount } from '../store/useAppStore';
+import { avatarStyle } from '../lib/thumbs';
 
 export default function StreamerCard({ channel }: { channel: Channel }) {
   const isFollowed = useAppStore((s) => s.isFollowed);
@@ -12,6 +13,7 @@ export default function StreamerCard({ channel }: { channel: Channel }) {
       <Link
         to={`/channel/${channel.id}`}
         className={`avatar ${channel.isLive ? 'on' : ''} ${channel.avatarTone}`}
+        style={avatarStyle(channel.id)}
         aria-label={`${channel.displayName} 채널로 이동`}
       />
       <h4>{channel.displayName}</h4>

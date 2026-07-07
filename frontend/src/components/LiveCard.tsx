@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import type { LiveStream } from '../types';
 import { IconEye } from './icons';
 import { formatCount } from '../store/useAppStore';
-import { thumbStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle } from '../lib/thumbs';
 
 export default function LiveCard({ stream }: { stream: LiveStream }) {
   return (
@@ -14,7 +14,7 @@ export default function LiveCard({ stream }: { stream: LiveStream }) {
       <div className="body">
         <div className="game">{stream.game}</div>
         <h3>{stream.title}</h3>
-        <div className="who"><span className="avatar" /> {stream.channelName}</div>
+        <div className="who"><span className="avatar" style={avatarStyle(stream.channelId)} /> {stream.channelName}</div>
       </div>
     </Link>
   );

@@ -7,7 +7,7 @@ import LiveCard from '../components/LiveCard';
 import StreamerCard from '../components/StreamerCard';
 import Schedule from '../components/Schedule';
 import { GridSkeleton } from '../components/states';
-import { thumbStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle } from '../lib/thumbs';
 
 export default function Home() {
   const [streams, setStreams] = useState<LiveStream[] | null>(null);
@@ -40,7 +40,7 @@ export default function Home() {
             <div>
               <h1>{hero.title}</h1>
               <div className="who">
-                <span className="avatar" />
+                <span className="avatar" style={avatarStyle(hero.channelId)} />
                 <div><b>{hero.channelName}</b> · {hero.game}</div>
                 <span style={{ marginLeft: 6 }}>{hero.viewers.toLocaleString()}명 시청 중</span>
               </div>

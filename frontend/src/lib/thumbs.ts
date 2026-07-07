@@ -21,3 +21,12 @@ export function thumbStyle(game: string): CSSProperties {
     ? { backgroundImage: `url("${url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }
     : {};
 }
+
+// 채널(스트리머) → 아바타 이미지 (magnific 생성, public/avatars/cN.jpg)
+export function avatarStyle(channelId: string): CSSProperties {
+  return {
+    backgroundImage: `url("${import.meta.env.BASE_URL}avatars/${channelId}.jpg")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+}

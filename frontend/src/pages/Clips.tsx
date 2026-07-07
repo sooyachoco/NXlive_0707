@@ -5,7 +5,7 @@ import { getClips } from '../services';
 import { formatCount } from '../store/useAppStore';
 import { IconEye } from '../components/icons';
 import { GridSkeleton, EmptyState } from '../components/states';
-import { thumbStyle } from '../lib/thumbs';
+import { thumbStyle, avatarStyle } from '../lib/thumbs';
 
 export default function Clips() {
   const [clips, setClips] = useState<Clip[] | null>(null);
@@ -44,7 +44,7 @@ export default function Clips() {
                 <div className="body">
                   <div className="game">{c.game}</div>
                   <h3>{c.title}</h3>
-                  <div className="who"><span className="avatar" /> {c.channelName}</div>
+                  <div className="who"><span className="avatar" style={avatarStyle(c.channelId)} /> {c.channelName}</div>
                 </div>
               </Link>
             ))}
