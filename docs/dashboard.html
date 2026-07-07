@@ -184,23 +184,24 @@ ol.tl li.ok{border-left-color:var(--ok);background:#eefcf6}
   <div class="cols" style="margin-top:20px">
     <!-- v1 vs v2 -->
     <div class="card">
-      <h3>핵심 발견 — 파이프라인 순서 (v1 vs v2)</h3>
+      <h3>버전 비교 — v1 vs v2 vs v3</h3>
       <table>
-        <tr><th>항목</th><th>v1 · 코딩 먼저</th><th>v2 · 설계 먼저</th></tr>
-        <tr><td>설계 스킬 시점</td><td>코딩 후 (사후 문서화)</td><td class="ok-txt">코딩 전 (구현 주도)</td></tr>
-        <tr><td>디자인 톤 확정</td><td>boilerplate Q5* 샘플</td><td>reference-proposal</td></tr>
-        <tr><td>접근성 결함 F-001</td><td>사후 탐지 → 수정</td><td class="ok-txt">설계 선명시 → 예방</td></tr>
-        <tr><td>UT S3 (Major)</td><td>1건</td><td class="ok-txt">0건</td></tr>
-        <tr><td>키보드 접근불가(초기)</td><td>12</td><td class="ok-txt">0</td></tr>
-        <tr><td>재작업 커밋</td><td>F-001 수정 발생</td><td class="ok-txt">없음</td></tr>
-        <tr><td>파이프라인 단계</td><td>9</td><td>8 (톤 통합·검증화)</td></tr>
-        <tr><td>최종 품질</td><td>동일 ✅</td><td>동일 ✅</td></tr>
+        <tr><th>항목</th><th>v1 · 코딩 먼저</th><th>v2 · 설계 먼저</th><th>v3 · 완전 병합</th></tr>
+        <tr><td>설계 스킬 시점</td><td>코딩 후(사후 문서화)</td><td class="ok-txt">코딩 전(구현 주도)</td><td class="ok-txt">코딩 전</td></tr>
+        <tr><td>접근성 F-001</td><td>사후 탐지→수정</td><td class="ok-txt">예방</td><td class="ok-txt">예방</td></tr>
+        <tr><td>UT S3 (Major)</td><td>1건</td><td class="ok-txt">0건</td><td class="ok-txt">0건</td></tr>
+        <tr><td>재작업 커밋</td><td>F-001 수정</td><td class="ok-txt">없음</td><td class="ok-txt">없음</td></tr>
+        <tr><td>번들 통합</td><td>스킬만 부분</td><td>스킬만 부분</td><td class="ok-txt">완전(25스킬·SSOT·게이트)</td></tr>
+        <tr><td>ux-research SSOT</td><td>미적재 🔵</td><td>미적재 🔵</td><td class="ok-txt">적재됨</td></tr>
+        <tr><td>UT done 게이트(ut:)</td><td>없음</td><td>없음</td><td class="ok-txt">검증됨(S4≥1 차단)</td></tr>
+        <tr><td><b>결과물(앱·디자인)</b></td><td><b>동일</b></td><td><b>동일</b></td><td><b>동일</b></td></tr>
       </table>
+      <p style="margin-top:12px;font-size:12px;line-height:1.6;background:var(--pc-100);border-radius:8px;padding:10px 12px"><b>📌 결과물은 v1 = v2 = v3 동일</b> (소스 diff 완전 일치 검증). 버전 차이는 <b>결과물이 아니라 과정·환경</b> — 파이프라인 순서(설계 선행)와 번들 병합 수준(완전 병합·SSOT·ut게이트)에만 있다.</p>
       <div class="cap" style="margin-top:16px;font-size:11px;font-weight:700;color:var(--bc-700)">키보드 접근 불가 요소 (초기 구현 시점)</div>
       <div class="improve">
         <div class="col"><div class="cap">v1</div><div class="bar v1">12</div></div>
         <div class="arrow">→</div>
-        <div class="col"><div class="cap">v2</div><div class="bar v2">0</div></div>
+        <div class="col"><div class="cap">v2·v3</div><div class="bar v2">0</div></div>
       </div>
     </div>
 
